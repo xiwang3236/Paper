@@ -12,7 +12,6 @@ DATA_PATH = ROOT / "data" / "papers.csv"
 OUTPUT_PATH = ROOT / "README.md"
 
 TABLE_HEADERS = [
-    "Year",
     "Published",
     "Title",
     "Modalities",
@@ -71,7 +70,6 @@ def _format_link(value: str, label: str) -> str:
 
 def _format_row(row: Dict[str, str]) -> List[str]:
     published_date = _parse_published_date(row.get("PublishedDate", ""))
-    year_value = str(published_date.year) if published_date else "-"
     published_value = (
         published_date.isoformat()
         if published_date
@@ -79,7 +77,6 @@ def _format_row(row: Dict[str, str]) -> List[str]:
     )
 
     formatted = {
-        "Year": year_value,
         "Published": published_value,
         "Title": _format_title(row),
         "Modalities": row.get("Modalities", "").strip() or "-",
