@@ -5,40 +5,49 @@ from __future__ import annotations
 import csv
 import datetime as dt
 from pathlib import Path
-from typing import List, Dict
+from typing import Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "data" / "papers.csv"
 OUTPUT_PATH = ROOT / "README.md"
 
-TABLE_COLUMNS = [
-    ("Year", "Year"),
-    ("Published", "PublishedDate"),
-    ("Title", "Title"),
-    ("Modalities", "Modalities"),
-    ("Platform", "SpatialPlatform"),
-    ("Assignment", "Assignment"),
-    ("Publisher", "Publisher"),
-    ("Link", "Link"),
-    ("Code", "Code"),
+TABLE_HEADERS = [
+    "Year",
+    "Published",
+    "Title",
+    "Modalities",
+    "Platform",
+    "Assignment",
+    "Publisher",
+    "Link",
+    "Code",
 ]
 
+DATE_FORMATS = (
+    "%Y-%m-%d",
+    "%Y/%m/%d",
+    "%m/%d/%Y",
+    "%m-%d-%Y",
+)
 
 def _parse_date(row: Dict[str, str]) -> dt.date:
-    """Prefer PublishedDate; fallback to Year."""
-    published = row.get("PublishedDate", "").strip()
-    if published:
-        try:
-            return dt.date.fromisoformat(published)
-        except ValueError:
-            pass
-    year = row.get("Year", "").strip()
-    if year:
-        try:
-            return dt.date(int(year), 1, 1)
-        except ValueError:
-            pass
+    """Prefer PublishedDate; returns datetime.date.min when parsing fails."""
+    parsed = _parse_published_date(row.get("PublishedDate", ""))
+    if parsed:
+        return parsed
     return dt.date.min
+
+
+def _parse_published_date(value: str) -> Optional[dt.date]:
+    cleaned = value.strip()
+    if not cleaned:
+        return None
+    for fmt in DATE_FORMATS:
+        try:
+            return dt.datetime.strptime(cleaned, fmt).date()
+        except ValueError:
+            continue
+    return None
 
 
 def _format_title(row: Dict[str, str]) -> str:
@@ -61,18 +70,26 @@ def _format_link(value: str, label: str) -> str:
 
 
 def _format_row(row: Dict[str, str]) -> List[str]:
+    published_date = _parse_published_date(row.get("PublishedDate", ""))
+    year_value = str(published_date.year) if published_date else "-"
+    published_value = (
+        published_date.isoformat()
+        if published_date
+        else row.get("PublishedDate", "").strip() or "-"
+    )
+
     formatted = {
-        "Year": row.get("Year", "").strip() or "-",
-        "Published": row.get("PublishedDate", "").strip() or "-",
+        "Year": year_value,
+        "Published": published_value,
         "Title": _format_title(row),
         "Modalities": row.get("Modalities", "").strip() or "-",
         "Platform": row.get("SpatialPlatform", "").strip() or "-",
-        "Assignment": row.get("Assignment", "").strip() or "-",
+        "Assignment": row.get("Predicting target", "").strip() or "-",
         "Publisher": row.get("Publisher", "").strip() or "-",
         "Link": _format_link(row.get("Link", ""), "Link"),
         "Code": _format_link(row.get("Code", ""), "Repo"),
     }
-    return [formatted[column] for column, _ in TABLE_COLUMNS]
+    return [formatted[column] for column in TABLE_HEADERS]
 
 
 def load_rows() -> List[Dict[str, str]]:
@@ -80,12 +97,29 @@ def load_rows() -> List[Dict[str, str]]:
         raise FileNotFoundError(f"Missing data file: {DATA_PATH}")
     with DATA_PATH.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
-        return [row for row in reader]
+        return [
+            _normalize_row(row)
+            for row in reader
+            if any(value.strip() for value in row.values())
+        ]
+
+
+def _normalize_row(row: Dict[str, str]) -> Dict[str, str]:
+    normalized = {key: (value or "") for key, value in row.items()}
+    normalized.setdefault("Predicting target", "")
+    normalized.setdefault("SpatialPlatform", "")
+    normalized.setdefault("Modalities", "")
+    normalized.setdefault("Publisher", "")
+    normalized.setdefault("Link", "")
+    normalized.setdefault("Code", "")
+    normalized.setdefault("PublishedDate", "")
+    normalized.setdefault("Title", "")
+    return normalized
 
 
 def build_table(rows: List[Dict[str, str]]) -> str:
-    header = " | ".join(column for column, _ in TABLE_COLUMNS)
-    divider = " | ".join(["---"] * len(TABLE_COLUMNS))
+    header = " | ".join(TABLE_HEADERS)
+    divider = " | ".join(["---"] * len(TABLE_HEADERS))
     lines = [f"| {header} |", f"| {divider} |"]
     for row in rows:
         formatted = _format_row(row)
