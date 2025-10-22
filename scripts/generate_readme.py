@@ -5,7 +5,9 @@ from __future__ import annotations
 import csv
 import datetime as dt
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
+
+from _table_utils import parse_published_date
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "data" / "papers.csv"
@@ -22,31 +24,12 @@ TABLE_HEADERS = [
     "Code",
 ]
 
-DATE_FORMATS = (
-    "%Y-%m-%d",
-    "%Y/%m/%d",
-    "%m/%d/%Y",
-    "%m-%d-%Y",
-)
-
 def _parse_date(row: Dict[str, str]) -> dt.date:
     """Prefer PublishedDate; returns datetime.date.min when parsing fails."""
-    parsed = _parse_published_date(row.get("PublishedDate", ""))
+    parsed = parse_published_date(row.get("PublishedDate", ""))
     if parsed:
         return parsed
     return dt.date.min
-
-
-def _parse_published_date(value: str) -> Optional[dt.date]:
-    cleaned = value.strip()
-    if not cleaned:
-        return None
-    for fmt in DATE_FORMATS:
-        try:
-            return dt.datetime.strptime(cleaned, fmt).date()
-        except ValueError:
-            continue
-    return None
 
 
 def _format_title(row: Dict[str, str]) -> str:
@@ -69,7 +52,7 @@ def _format_link(value: str, label: str) -> str:
 
 
 def _format_row(row: Dict[str, str]) -> List[str]:
-    published_date = _parse_published_date(row.get("PublishedDate", ""))
+    published_date = parse_published_date(row.get("PublishedDate", ""))
     published_value = (
         published_date.isoformat()
         if published_date
