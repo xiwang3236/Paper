@@ -6,66 +6,46 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This repository maintains a curated collection of research papers on spatial omics prediction, specifically focusing on methods that predict spatial transcriptomics and other molecular information from histology images (primarily H&E). The data is managed in a bidirectional sync between a CSV database and a formatted README table.
 
-## Core Architecture
+## Workflow
 
-The project uses a **bidirectional synchronization** pattern between two representations of the same data:
+Use Claude Code to:
+1. **Add new papers** directly to `README.md` and `RELATED.md` tables.
+2. **Reformat** existing tables when column layout or styling changes.
 
-1. **Source of Truth (CSV)**: `data/papers.csv` contains complete metadata for each paper including fields like Title, PublishedDate, Publisher, Modalities, SpatialPlatform, Predicting target, Summary, Tags, Link, and Code.
+The `update/` directory is a temporary staging area where raw paper info can be saved (e.g., `update/20251209_conference.txt`) before being processed into the README tables.
 
-2. **Public View (README)**: `README.md` displays a curated subset of these fields in a markdown table, auto-generated and sorted by publication date (newest first).
+## Table Format
 
-### Data Flow
+Both `README.md` and `RELATED.md` use the same column order:
 
-- **CSV → README**: Use `python scripts/generate_readme.py` to render the README table from the CSV data. This is the primary workflow for updates.
-- **README → CSV**: Use `python scripts/update_csv_from_readme.py` to sync manual edits from README back to the CSV. This preserves existing CSV fields not shown in the README.
+| Published | Title | Assignment | Modalities | Platform | Code |
+| --- | --- | --- | --- | --- | --- |
 
-### Shared Utilities
+- **Published**: Date and publisher combined, e.g., `2026-01-05 Nature Medicine`
+- **Title**: Paper title as a markdown link to the paper URL
+- **Assignment**: What the method predicts (maps from CSV field `Predicting target`)
+- **Modalities**: Input data types, e.g., "H&E", "H&E + ST"
+- **Platform**: Spatial platform, e.g., "Seq(Visium)", "Both"
+- **Code**: Link to code repo as `[Repo](url)`, or `-` if unavailable
 
-Both sync scripts rely on `scripts/_table_utils.py` which provides:
-- `parse_published_date()`: Parses dates from multiple formats (YYYY-MM-DD, YYYY/MM/DD, MM/DD/YYYY, MM-DD-YYYY)
-- `split_markdown_link()`: Extracts label and URL from markdown link syntax
-
-## Common Commands
-
-### Update README from CSV
-```bash
-python scripts/generate_readme.py
-```
-Use this after adding or editing papers in `data/papers.csv`. The README will be regenerated with papers sorted by publication date (newest first).
-
-### Sync CSV from README
-```bash
-python scripts/update_csv_from_readme.py
-```
-Use this if papers were manually edited in the README table. Merges README changes back into the CSV while preserving fields like Summary, Tags, and VenueType that aren't displayed in the README.
-
-## Key Design Patterns
-
-### Table Column Mapping
-The README displays a subset of CSV fields with some renaming:
-- `PublishedDate` → "Published"
-- `SpatialPlatform` → "Platform"
-- `Predicting target` → "Assignment"
-
-Header aliases (in `update_csv_from_readme.py`) handle variations in README header text.
+Papers are sorted by publication date (newest first), split into "Journal & Preprint Papers" and "Conference Papers" sections.
 
 ### Date Handling
-- Dates are parsed flexibly but normalized to ISO format (YYYY-MM-DD) in both CSV and README
-- Invalid dates fall back to `datetime.date.min` for sorting purposes
+- Dates normalized to ISO format (YYYY-MM-DD)
+- Invalid dates fall back to `datetime.date.min` for sorting
 
 ### Link Formatting
-- Title links to DOI (preferred) or Link field
-- Link column displays "[Link](url)"
-- Code column displays "[Repo](url)"
-- Missing values render as "-"
+- Title links to DOI (preferred) or paper URL
+- Code column displays `[Repo](url)` or `-`
+- Missing values render as `-`
 
 ## Data Validation
 
-When adding new papers to CSV:
-- Required fields: Title, PublishedDate
-- Date format: Prefer YYYY-MM-DD for consistency
+When adding new papers:
+- Required: Title, PublishedDate, Publisher
+- Date format: YYYY-MM-DD
 - Links: Full URLs (https://)
-- Modalities: Common patterns include "H&E", "H&E + ST", "H&E + mIF"
+- Modalities: "H&E", "H&E + ST", "H&E + mIF", etc.
 - Platform: "Seq(Visium)", "Both", "mIF co-registered", etc.
 
 ## Project Goal
