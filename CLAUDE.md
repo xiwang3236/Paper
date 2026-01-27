@@ -48,6 +48,28 @@ When adding new papers:
 - Modalities: "H&E", "H&E + ST", "H&E + mIF", etc.
 - Platform: "Seq(Visium)", "Both", "mIF co-registered", etc.
 
+## arXiv Search Pipeline
+
+`tools/arxiv_search.py` searches arXiv for spatial omics prediction papers and generates output files. Stdlib only — no pip installs required.
+
+### Two-Step Workflow
+
+**Step 1 — Run the script:**
+```bash
+python tools/arxiv_search.py
+```
+Produces:
+- `tools/output/arxiv_results.txt` — raw results with title, link, date, and abstract
+- `ARXIV.md` — markdown table with Assignment/Modalities/Platform/Code defaulting to `-`
+
+**Step 2 — Claude Code curates:**
+Read `tools/output/arxiv_results.txt`, extract Assignment/Modalities/Platform from abstracts, and update `ARXIV.md` with proper metadata.
+
+### Search Queries
+The script runs 15 queries covering: spatial omics, spatial transcriptomics, spatial proteomics, gene expression prediction from histology, cell type deconvolution, and H&E-to-omics deep learning methods. Results are deduplicated by arXiv ID and sorted by date descending.
+
 ## Project Goal
 
 Per user instructions: The goal is to use pretrained networks from papers in this collection. When working with papers, prioritize those with available code repositories (Code field populated).
+
+Always update last update date in first line
