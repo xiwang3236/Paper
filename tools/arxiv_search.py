@@ -74,11 +74,14 @@ def parse_entries(xml_text: str) -> list[dict]:
     return entries
 
 
+MIN_DATE = "2023-01-01"
+
+
 def deduplicate(all_entries: list[dict]) -> list[dict]:
     seen: set[str] = set()
     unique = []
     for e in all_entries:
-        if e["id"] not in seen:
+        if e["id"] not in seen and e["date"] >= MIN_DATE:
             seen.add(e["id"])
             unique.append(e)
     return unique
