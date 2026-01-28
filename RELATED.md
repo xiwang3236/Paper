@@ -2,7 +2,7 @@
 
 Papers related to spatial omics but not focused on prediction tasks. For prediction-focused papers, see [README.md](README.md).
 
-Auto-generated from `README.md`. Last update: 2025-12-07.
+Auto-generated from `README.md`. Last update: 2026-01-28.
 
 ## Journal & Preprint Papers
 
