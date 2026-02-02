@@ -1,0 +1,10 @@
+*.pdf
+
+# Ignore knowledge base content except INDEX.md
+knowledge/papers/
+knowledge/summaries/
+output/
+pdfs/
+temp/
+reports/
+
