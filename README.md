@@ -1,12 +1,18 @@
 # Spatial Omics Prediction Papers
 
-Last update: 2026-01-26.
+Last update: 2026-02-01.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-01-29 arXiv | [HistoPrism: Unlocking Functional Pathway Analysis from Pan-Cancer Histology via Gene Expression Prediction](https://arxiv.org/abs/2601.21560v1) | Gene expression (pathway-level) | H&E | None (TCGA) | - |
+| 2026-01-16 Nature Communications | [Robust and interpretable prediction of gene markers and cell types from spatial transcriptomics data](https://doi.org/10.1038/s41467-026-68487-0) | Gene expression + Cell type | H&E | Both | - |
+| 2026-01-16 NPJ Artificial Intelligence | [A multimodal framework to identify molecular mechanisms driving patient group-associated morphology through the integration of spatial transcriptomics and whole slide imaging](https://doi.org/10.1038/s44387-025-00050-6) | Molecular mechanism identification | H&E + ST | ST (General) | - |
 | 2026-01-05 Nature Medicine | [AI-enabled virtual spatial proteomics from histopathology for interpretable biomarker discovery in lung cancer](https://www.nature.com/articles/s41591-025-04060-4) | Protein expression (40 biomarkers) | H&E | None | - |
+| 2025-12-31 Nature Communications | [Generating crossmodal gene expression from cancer histopathology improves multimodal AI predictions](https://doi.org/10.1038/s41467-025-66961-9) | Gene expression (crossmodal) | H&E | None (TCGA/CPTAC) | [Repo](https://github.com/Samiran-Dey/PathGen) |
+| 2025-12-17 Nature Methods | [High-parameter spatial multi-omics through histology-anchored integration](https://doi.org/10.1038/s41592-025-02926-6) | Multi-omics prediction | H&E + ST | Both | - |
+| 2025-12-12 Nature Communications | [A multimodal knowledge-enhanced whole-slide pathology foundation model](https://doi.org/10.1038/s41467-025-66220-x) | Molecular prediction (gene expression) | H&E + Gene expression + Reports | None (TCGA) | - |
 | 2025-09-15 Nature Methods | [Scaling up spatial transcriptomics for large-sized tissues: uncovering cellular-level tissue architecture beyond conventional platforms with iSCALE](https://www.nature.com/articles/s41592-025-02770-8) | Large-scale gene expression + tissue architecture | H&E + ST | Both | [Repo](https://github.com/daviddaiweizhang/iSCALE) |
 | 2025-09-15 Nature Methods | [Spatial gene expression at single-cell resolution from histology using deep learning with GHIST](https://www.nature.com/articles/s41592-025-02795-z) | Gene expression (single-cell resolution) | H&E + ST | Both | [Repo](https://github.com/SydneyBioX/GHIST/) |
 | 2025-05-09 Nature Communications | [Benchmarking the translational potential of spatial gene expression prediction from histology](https://www.nature.com/articles/s41467-025-56618-y) | Gene expression | H&E | Both | - |

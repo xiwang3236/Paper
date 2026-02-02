@@ -6,13 +6,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This repository maintains a curated collection of research papers on spatial omics prediction, specifically focusing on methods that predict spatial transcriptomics and other molecular information from histology images (primarily H&E). The data is managed in a bidirectional sync between a CSV database and a formatted README table.
 
-## Workflow
+## Full Pipeline (see also `WORKFLOW.md`)
 
-Use Claude Code to:
-1. **Add new papers** directly to `README.md` and `RELATED.md` tables.
-2. **Reformat** existing tables when column layout or styling changes.
+When the user asks to run the weekly update, follow these steps in order:
 
-The `update/` directory is a temporary staging area where raw paper info can be saved (e.g., `update/20251209_conference.txt`) before being processed into the README tables.
+### Step 1 — Fetch papers (Python scripts)
+
+Run both search scripts to populate `temp/`:
+
+```bash
+python tools/arxiv/arxiv_search.py
+python tools/journal/journal_search.py --all-topics --days 30
+```
+
+This produces raw results (`temp/*_results_*.txt`) and draft tables (`temp/ARXIV_*.md`, `temp/JOURNAL_*.md`).
+
+### Step 2 — Curate & extract metadata
+
+Read each `temp/*_results_*.txt` file. For every paper:
+1. Read the abstract and decide: **relevant method paper** or **biology application** (skip)
+2. For relevant papers, extract from the abstract:
+   - **Assignment**: what the method predicts/does
+   - **Modalities**: input data types (H&E, ST, scRNA-seq, etc.)
+   - **Platform**: spatial platform (Visium, Xenium, MERFISH, etc.)
+   - **Code**: GitHub/repo URL if mentioned
+3. Update `temp/ARXIV_*.md` and `temp/JOURNAL_*.md` with the extracted metadata
+
+### Step 3 — Triage into README vs RELATED
+
+Classify each relevant paper:
+- **Prediction methods** (H&E → gene expression, cell types, proteins) → add to `README.md`
+- **Analysis/tools** (clustering, segmentation, integration, imputation, simulation) → add to `RELATED.md`
+- **Biology applications** that merely use ST as a tool → skip entirely
+
+### Step 4 — Update README.md & RELATED.md
+
+Insert new rows into the correct table using the standard format (see Table Format below). Maintain date-descending sort. Update the last-update date in the first line of each file.
+
+### Step 5 — Generate weekly report
+
+Create `reports/WEEKLY_YYYY-MM-DD.md` from `reports/WEEKLY_TEMPLATE.md`:
+- **Journal papers**: 1-month window only
+- **arXiv papers**: 7-day window
+- Each entry has 3 lines: title+link, keywords, summary
+- Save triage notes to `temp/WEEKLY_REPORT_YYYY-MM-DD.md`
 
 ## Table Format
 
@@ -54,52 +91,23 @@ When adding new papers:
 
 ### Usage
 
-**Default behavior (prediction topic, last 7 days):**
 ```bash
-python tools/arxiv/arxiv_search.py
-```
-
-**CLI Options:**
-```bash
-# Analysis topic, last 14 days
+python tools/arxiv/arxiv_search.py                          # default: prediction, 7 days
 python tools/arxiv/arxiv_search.py --topic analysis --days 14
-
-# All topics, last week
 python tools/arxiv/arxiv_search.py --all-topics
-
-# All papers since 2023
-python tools/arxiv/arxiv_search.py --days 0
-
-# Custom max results per query
 python tools/arxiv/arxiv_search.py --max-results 100
 ```
 
 **Arguments:**
-- `-t, --topic {prediction,analysis}` - Select topic (default: prediction)
-- `-d, --days N` - Fetch from last N days (default: 7, use 0 for all since 2023)
-- `-a, --all-topics` - Run all topics (overrides --topic)
-- `-m, --max-results N` - Max results per query (default: 50)
+- `-t, --topic {prediction,analysis}` — select topic (default: prediction)
+- `-d, --days N` — fetch from last N days (default: 7, use 0 for all since 2023)
+- `-a, --all-topics` — run all topics (overrides --topic)
+- `-m, --max-results N` — max results per query (default: 50)
 
 ### Output Files
 
-All output files are saved to `tools/arxiv/output/`:
-
-**Single topic mode:**
-- `tools/arxiv/output/arxiv_results.txt` — raw results with title, link, date, and abstract
-- `tools/arxiv/output/ARXIV.md` — markdown table with Assignment/Modalities/Platform/Code defaulting to `-`
-
-**All topics mode:**
-- `tools/arxiv/output/arxiv_results_{topic}.txt` — per-topic raw results
-- `tools/arxiv/output/ARXIV_{topic}.md` — per-topic markdown tables
-- `tools/arxiv/output/arxiv_results_all.txt` — combined results
-- `tools/arxiv/output/ARXIV_all.md` — combined markdown table
-
-### Two-Step Workflow
-
-**Step 1 — Run the script** (as shown above)
-
-**Step 2 — Claude Code curates:**
-Read `tools/arxiv/output/arxiv_results.txt`, extract Assignment/Modalities/Platform from abstracts, and update `tools/arxiv/output/ARXIV.md` with proper metadata.
+- `temp/arxiv_results_YYYY-MM-DD.txt` — raw results with title, link, date, and abstract
+- `temp/ARXIV_YYYY-MM-DD.md` — markdown table with metadata defaulting to `-`
 
 ### Search Topics
 
@@ -111,7 +119,7 @@ Results are deduplicated by arXiv ID and sorted by date descending.
 
 ## Journal Search Pipeline
 
-`tools/arxiv/journal_search.py` searches high-impact journals via the **Europe PMC API** for spatial omics papers. Stdlib only — no pip installs required.
+`tools/journal/journal_search.py` searches high-impact journals via the **Europe PMC API** for spatial omics papers. Stdlib only — no pip installs required.
 
 ### Target Journals
 
@@ -119,52 +127,55 @@ Nature Methods, Nature Genetics, Bioinformatics, Nature Machine Intelligence, np
 
 ### Usage
 
-**Default behavior (prediction topic, last 30 days):**
 ```bash
-python tools/arxiv/journal_search.py
-```
-
-**CLI Options:**
-```bash
-# Analysis topic, last 60 days
-python tools/arxiv/journal_search.py --topic analysis --days 60
-
-# All topics
-python tools/arxiv/journal_search.py --all-topics
-
-# Specific journal only
-python tools/arxiv/journal_search.py --journal "Nature Methods"
-
-# Custom max results per query
-python tools/arxiv/journal_search.py --max-results 200
+python tools/journal/journal_search.py                              # default: prediction, 30 days
+python tools/journal/journal_search.py --topic analysis --days 60
+python tools/journal/journal_search.py --all-topics
+python tools/journal/journal_search.py --journal "Nature Methods"
+python tools/journal/journal_search.py --max-results 200
 ```
 
 **Arguments:**
-- `-t, --topic {prediction,analysis}` - Select topic (default: prediction)
-- `-d, --days N` - Fetch from last N days (default: 30, use 0 for all since 2023)
-- `-a, --all-topics` - Run all topics (overrides --topic)
-- `-j, --journal NAME` - Filter to a single journal
-- `-m, --max-results N` - Max results per query (default: 100)
+- `-t, --topic {prediction,analysis}` — select topic (default: prediction)
+- `-d, --days N` — fetch from last N days (default: 30, use 0 for all since 2023)
+- `-a, --all-topics` — run all topics (overrides --topic)
+- `-j, --journal NAME` — filter to a single journal
+- `-m, --max-results N` — max results per query (default: 100)
 
 ### Output Files
 
-All output files are saved to `tools/arxiv/output/`:
-
-**Single topic mode:**
-- `tools/arxiv/output/journal_results.txt` — raw results with title, journal, link, date, and abstract
-- `tools/arxiv/output/JOURNAL.md` — markdown table
-
-**All topics mode:**
-- `tools/arxiv/output/journal_results_{topic}.txt` — per-topic raw results
-- `tools/arxiv/output/JOURNAL_{topic}.md` — per-topic markdown tables
-- `tools/arxiv/output/journal_results_all.txt` — combined results
-- `tools/arxiv/output/JOURNAL_all.md` — combined markdown table
-
-### Two-Step Workflow
-
-Same as arXiv: run the script, then Claude Code curates by reading `journal_results.txt` and filling in Assignment/Modalities/Platform from abstracts.
+- `temp/journal_results_YYYY-MM-DD.txt` — raw results with title, journal, link, date, and abstract
+- `temp/JOURNAL_YYYY-MM-DD.md` — markdown table
 
 Results are deduplicated by DOI and sorted by date descending.
+
+## Weekly Report
+
+The `reports/` directory contains curated weekly reports of new spatial omics papers.
+
+### Template
+
+`reports/WEEKLY_TEMPLATE.md` defines the report format. Each paper entry has 3 lines:
+1. Title as markdown link + date + publisher
+2. Keyword tags in backticks
+3. 1-2 sentence summary from abstract
+
+### Report Rules
+
+- Journal papers: **1-month window** only
+- arXiv papers: **7-day window**
+- Papers sorted date descending within each section
+- Only computational method papers — no biology applications
+- Split into "Papers from High-Impact Journals" and "Papers from arXiv"
+
+### Keywords
+
+Use concise, consistent domain keywords in backticks, e.g.:
+`gene expression prediction`, `spatial domain detection`, `cell segmentation`, `foundation model`, `multi-omics integration`, `graph neural network`, `cell-cell communication`, `data integration`, `simulation`, `clone tracing`
+
+### Output
+
+Reports are saved as `reports/WEEKLY_YYYY-MM-DD.md` with one file per search run.
 
 ## PDF Downloads
 
@@ -223,23 +234,6 @@ When the user asks questions about papers, follow this workflow:
    - Specific implementation details
    - Mathematical formulations
    - Experimental setup and ablation studies
-
-### Example Queries
-
-**"Which papers use graph neural networks?"**
-1. Search INDEX.md → Method Type: GNN section
-2. Read summaries for those papers
-3. Cite specific papers with findings
-
-**"What datasets are commonly used for benchmarking?"**
-1. Search INDEX.md → Key Datasets section
-2. Read summaries → Datasets Used field
-3. Aggregate and report
-
-**"How does VORTEX handle 3D prediction?"**
-1. Find VORTEX in INDEX.md
-2. Read summary for overview
-3. Read full text (`AI-driven_3D_Spatial_Transcriptomics.md`) for technical details
 
 ### Citation Format
 

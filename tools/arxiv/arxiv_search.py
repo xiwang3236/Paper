@@ -59,7 +59,8 @@ ARXIV_API = "http://export.arxiv.org/api/query"
 NS = {"atom": "http://www.w3.org/2005/Atom"}
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+OUTPUT_DIR = os.path.join(PROJECT_ROOT, "temp")
 
 
 def fetch_arxiv(query: str, max_results: int = MAX_RESULTS) -> str:
