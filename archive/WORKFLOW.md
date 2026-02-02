@@ -41,6 +41,19 @@ Create `reports/WEEKLY_YYYY-MM-DD.md` from `reports/WEEKLY_TEMPLATE.md`:
 - Write keywords (line 2) and summary (line 3) per entry
 - Save interim triage notes to `temp/WEEKLY_REPORT_YYYY-MM-DD.md`
 
+## Step 6 — Generate figure newspaper (Python + Claude Code)
+
+```bash
+python tools/figures/fetch_figures.py --report reports/WEEKLY_YYYY-MM-DD.md
+```
+
+**Output**: `reports/WEEKLY_YYYY-MM-DD_figures.html` — a newspaper-style HTML page with:
+- Fetched first figures from each paper (cached in `temp/figures/`)
+- Papers split into "High-Impact Journals" and "arXiv" sections
+- Papers without figures grouped at the bottom in compact text-only cards
+
+Use `--skip-download` to regenerate HTML from cached figures without re-fetching.
+
 ## Summary
 
 | Step | Tool | Input | Output |
@@ -50,5 +63,6 @@ Create `reports/WEEKLY_YYYY-MM-DD.md` from `reports/WEEKLY_TEMPLATE.md`:
 | 3. Triage | Claude Code | Curated tables | Classification per paper |
 | 4. Update tables | Claude Code | Triage decisions | `README.md`, `RELATED.md` |
 | 5. Report | Claude Code | All of the above | `reports/WEEKLY_YYYY-MM-DD.md` |
+| 6. Figures | Python (auto) | Weekly report | `reports/WEEKLY_YYYY-MM-DD_figures.html` |
 
-Steps 2–5 require Claude Code because they involve reading abstracts, judging relevance, and extracting structured information.
+Steps 2–5 require Claude Code because they involve reading abstracts, judging relevance, and extracting structured information. Step 6 is automated but can be re-run with `--skip-download` to regenerate HTML from cached figures.

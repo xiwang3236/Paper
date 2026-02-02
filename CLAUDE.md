@@ -177,6 +177,40 @@ Use concise, consistent domain keywords in backticks, e.g.:
 
 Reports are saved as `reports/WEEKLY_YYYY-MM-DD.md` with one file per search run.
 
+## Figure Newspaper Generation
+
+`tools/figures/fetch_figures.py` fetches first figures from papers in a weekly report and generates a Nature Methods-inspired HTML newspaper page. Stdlib only — no pip installs required.
+
+### Usage
+
+```bash
+python tools/figures/fetch_figures.py --report reports/WEEKLY_2026-02-01.md
+python tools/figures/fetch_figures.py --report reports/WEEKLY_2026-02-01.md --output custom.html
+python tools/figures/fetch_figures.py --report reports/WEEKLY_2026-02-01.md --skip-download
+```
+
+**Arguments:**
+- `--report PATH` — path to a `WEEKLY_*.md` report (required)
+- `--output PATH` — custom output HTML path (default: `{report}_figures.html`)
+- `--skip-download` — use cached figures or placeholders instead of fetching
+
+### Output
+
+- Figures cached in `temp/figures/` (one subdirectory per paper)
+- HTML saved alongside the report, e.g., `reports/WEEKLY_2026-02-01_figures.html`
+
+### Layout
+
+- **Header**: Dark red banner with "AI-Scholar" linking to the GitHub repo, followed by "Predictive Modeling in Spatial Omics" (red, bold) and "Recent Advances" (black)
+- **Signature**: Email (xxw962@case.edu) and GitHub link
+- **Sections**: "Papers from High-Impact Journals" and "Papers from arXiv", each with a 2-column card grid (single-column on narrow viewports)
+- **Figure cards**: Image on top, title, date/publisher, bold keyword pills, summary
+- **No-figure cards**: Compact text-only cards with left red border accent, grouped at the bottom under "Papers without figures"
+
+### Style
+
+Color palette: white background, dark red accents (`#8B1E1E`), gray borders (`#D9D9D9`), Arial font throughout. Sharp corners, no rounded borders. Print-journal aesthetic.
+
 ## PDF Downloads
 
 Paper PDFs are stored in `pdfs/` with subdirectories by section:
