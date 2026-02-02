@@ -2,12 +2,27 @@
 
 Papers related to spatial omics but not focused on prediction tasks. For prediction-focused papers, see [README.md](README.md).
 
-Auto-generated from `README.md`. Last update: 2025-12-07.
+Auto-generated from `README.md`. Last update: 2026-02-01.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-01-27 Bioinformatics | [STransfer: A Transfer Learning-Enhanced Graph Convolutional Network for Clustering Spatial Transcriptomics Data](https://doi.org/10.1093/bioinformatics/btag049) | ST clustering | ST | ST (General) | [Repo](https://github.com/Saki-JSU/Publications/tree/main/STransfer) |
+| 2026-01-07 Nature Communications | [Spatially resolved integrative analysis of transcriptomic and metabolomic changes in tissue injury studies](https://doi.org/10.1038/s41467-025-68003-w) | Multi-omics integration | ST + MSI + H&E | Visium + MALDI/DESI | - |
+| 2026-01-06 Nature Computational Science | [Unlocking single-cell level and continuous whole-slide insights in spatial transcriptomics with PanoSpace](https://doi.org/10.1038/s43588-025-00938-y) | ST reconstruction / Imputation | H&E + ST + scRNA | ST (General) | - |
+| 2026-01-05 Nature Computational Science | [Decoding cell state transitions driven by dynamic cell-cell communication in spatial transcriptomics](https://doi.org/10.1038/s43588-025-00934-2) | Cell-cell communication dynamics | ST | ST (General) | - |
+| 2026-01-01 Bioinformatics | [SpatialRNA: a Python package for easy application of Graph Neural Network models on single-molecule spatial transcriptomics dataset](https://doi.org/10.1093/bioinformatics/btaf659) | Spatial domain detection | iST | iST (General) | [Repo](https://github.com/ruqianl/spatialrna) |
+| 2026-01-01 Bioinformatics | [STAHD: a scalable and accurate method to detect spatial domains in high-resolution spatial transcriptomics data](https://doi.org/10.1093/bioinformatics/btaf619) | Spatial domain detection | ST | ST (High-res) | [Repo](https://github.com/Little-Eel/STAHD) |
+| 2026-01-01 Bioinformatics | [Spider: a flexible and unified framework for simulating spatial transcriptomics data](https://doi.org/10.1093/bioinformatics/btaf562) | ST simulation | ST | ST (General) | [Repo](https://github.com/YANG-ERA/Spider) |
+| 2025-12-31 Nature Methods | [Bridging the dimensional gap from planar spatial transcriptomics to 3D cell atlases](https://doi.org/10.1038/s41592-025-02969-9) | 3D atlas construction | ST | ST (General) | - |
+| 2025-12-18 Nature Methods | [SpaceBar enables single-cell-resolution clone tracing with imaging-based spatial transcriptomics](https://doi.org/10.1038/s41592-025-02968-w) | Clone tracing | iST | iST | - |
+| 2025-12-16 Nature Communications | [Accurate imputation of pathway-specific gene expression in spatial transcriptomics with PASTA](https://doi.org/10.1038/s41467-025-67421-0) | Pathway imputation | ST + scRNA | ST (General) | - |
+| 2025-12-13 Nature Communications | [FastCCC: a permutation-free framework for scalable, robust, and reference-based cell-cell communication analysis in single cell transcriptomics studies](https://doi.org/10.1038/s41467-025-66272-z) | Cell-cell communication | scRNA/ST | ST (General) | - |
+| 2025-12-10 Nature Methods | [Novae: a graph-based foundation model for spatial transcriptomics data](https://doi.org/10.1038/s41592-025-02899-6) | Spatial domain detection | ST | ST (General) | [Repo](https://github.com/MICS-Lab/novae) |
+| 2025-12-10 Nature Communications | [SIDISH integrates single-cell and bulk transcriptomics to identify high-risk cells and guide precision therapeutics through in silico perturbation](https://doi.org/10.1038/s41467-025-66162-4) | Risk cell identification | scRNA + bulk + ST | ST (General) | - |
+| 2025-12-08 Nature Methods | [CellSAM: a foundation model for cell segmentation](https://doi.org/10.1038/s41592-025-02879-w) | Cell segmentation | Multi-modal imaging | General | [Repo](https://cellsam.deepcell.org/) |
+| 2025-12-03 Nature Communications | [Adaptive compression framework for giga-pixel whole slide images](https://doi.org/10.1038/s41467-025-66889-0) | WSI compression | H&E | None | - |
 | 2025-01-01 Cell | [Multimodal AI generates virtual population for tumor microenvironment modeling](https://www.cell.com/cell/fulltext/S0092-8674(25)01312-1) | Virtual mIF Generation / TIME Modeling | H&E + mIF | mIF | - |
 
 ## Conference Papers

@@ -1,12 +1,18 @@
 # Spatial Omics Prediction Papers
 
-Last update: 2026-01-26.
+Last update: 2026-02-01.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-01-29 arXiv | [HistoPrism: Unlocking Functional Pathway Analysis from Pan-Cancer Histology via Gene Expression Prediction](https://arxiv.org/abs/2601.21560v1) | Gene expression (pathway-level) | H&E | None (TCGA) | - |
+| 2026-01-16 Nature Communications | [Robust and interpretable prediction of gene markers and cell types from spatial transcriptomics data](https://doi.org/10.1038/s41467-026-68487-0) | Gene expression + Cell type | H&E | Both | - |
+| 2026-01-16 NPJ Artificial Intelligence | [A multimodal framework to identify molecular mechanisms driving patient group-associated morphology through the integration of spatial transcriptomics and whole slide imaging](https://doi.org/10.1038/s44387-025-00050-6) | Molecular mechanism identification | H&E + ST | ST (General) | - |
 | 2026-01-05 Nature Medicine | [AI-enabled virtual spatial proteomics from histopathology for interpretable biomarker discovery in lung cancer](https://www.nature.com/articles/s41591-025-04060-4) | Protein expression (40 biomarkers) | H&E | None | - |
+| 2025-12-31 Nature Communications | [Generating crossmodal gene expression from cancer histopathology improves multimodal AI predictions](https://doi.org/10.1038/s41467-025-66961-9) | Gene expression (crossmodal) | H&E | None (TCGA/CPTAC) | [Repo](https://github.com/Samiran-Dey/PathGen) |
+| 2025-12-17 Nature Methods | [High-parameter spatial multi-omics through histology-anchored integration](https://doi.org/10.1038/s41592-025-02926-6) | Multi-omics prediction | H&E + ST | Both | - |
+| 2025-12-12 Nature Communications | [A multimodal knowledge-enhanced whole-slide pathology foundation model](https://doi.org/10.1038/s41467-025-66220-x) | Molecular prediction (gene expression) | H&E + Gene expression + Reports | None (TCGA) | - |
 | 2025-09-15 Nature Methods | [Scaling up spatial transcriptomics for large-sized tissues: uncovering cellular-level tissue architecture beyond conventional platforms with iSCALE](https://www.nature.com/articles/s41592-025-02770-8) | Large-scale gene expression + tissue architecture | H&E + ST | Both | [Repo](https://github.com/daviddaiweizhang/iSCALE) |
 | 2025-09-15 Nature Methods | [Spatial gene expression at single-cell resolution from histology using deep learning with GHIST](https://www.nature.com/articles/s41592-025-02795-z) | Gene expression (single-cell resolution) | H&E + ST | Both | [Repo](https://github.com/SydneyBioX/GHIST/) |
 | 2025-05-09 Nature Communications | [Benchmarking the translational potential of spatial gene expression prediction from histology](https://www.nature.com/articles/s41467-025-56618-y) | Gene expression | H&E | Both | - |
@@ -29,20 +35,20 @@ Last update: 2026-01-26.
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
 | 2025-09-18 NeurIPS | [Learning Relative Gene Expression Trends from Pathology Images in Spatial Transcriptomics](https://openreview.net/forum?id=X3zarVyJ5B) | Robust expression ranking under noise | H&E + ST | Both | [Repo](https://github.com/naivete5656/STRank) |
-| 2025-06-17 CVPR | [STINR: Deciphering Spatial Transcriptomics via Implicit Neural Representation](https://cvpr.thecvf.com) | Imputation, Denoising, Deconvolution | ST | ST (General) | - |
-| 2025-06-17 CVPR | [ASIGN: An Anatomy-aware Spatial Imputation Graph Network for 3D Spatial Transcriptomics](https://openaccess.thecvf.com) | 3D Imputation | H&E + ST | ST (3D) | - |
-| 2025-06-17 CVPR | [MERGE: Multi-faceted Hierarchical Graph-based GNN for Gene Expression Prediction](https://cvpr.thecvf.com) | Gene Expression Prediction | WSI + ST | ST (General) | - |
-| 2025-02-25 AAAI | [DUSTED: Dual-Attention Enhanced Spatial Transcriptomics Denoiser](https://ojs.aaai.org) | Denoising, Imputation | ST | ST (General) | - |
-| 2025-02-25 AAAI | [SpotDiff: Spatial Gene Expression Imputation Diffusion with Single-Cell RNA Integration](https://ojs.aaai.org) | Imputation | ST + scRNA-seq | ST (General) | - |
-| 2025-02-25 AAAI | [M2OST: Many-to-One Regression for Predicting Spatial Transcriptomics from Digital Pathology Images](https://themoonlight.io) | ST Prediction from Image | Pathology Images | ST (General) | - |
-| 2025-01-01 MICCAI | [Deep Association Multimodal Learning for Zero-shot Spatial Transcriptomics Prediction (ALIGN-ST)](https://papers.miccai.org) | Zero-shot Prediction | H&E + Text | ST (General) | - |
-| 2025-01-01 MICCAI | [Adaptive Spatial Transcriptomics Interpolation via Cross-modal Cross-slice Modeling (C2-STi)](https://papers.miccai.org) | Slice Interpolation | H&E + ST | ST (3D) | - |
-| 2025-01-01 SPIE | [Renal Cell Type and State Estimation in Brightfield Histology Images](https://profiles.wustl.edu) | Cell Type Estimation | H&E + Text | Visium | - |
+| 2025-06-17 CVPR | [STINR: Deciphering Spatial Transcriptomics via Implicit Neural Representation](https://openaccess.thecvf.com/content/CVPR2025/papers/Luo_STINR_Deciphering_Spatial_Transcriptomics_via_Implicit_Neural_Representation_CVPR_2025_paper.pdf) | Imputation, Denoising, Deconvolution | ST | ST (General) | [Repo](https://github.com/YisiLuo/STINR) |
+| 2025-06-17 CVPR | [ASIGN: An Anatomy-aware Spatial Imputation Graph Network for 3D Spatial Transcriptomics](https://openaccess.thecvf.com/content/CVPR2025/papers/Zhu_ASIGN_An_Anatomy-aware_Spatial_Imputation_Graphic_Network_for_3D_Spatial_CVPR_2025_paper.pdf) | 3D Imputation | H&E + ST | ST (3D) | [Repo](https://github.com/hrlblab/ASIGN) |
+| 2025-06-17 CVPR | [MERGE: Multi-faceted Hierarchical Graph-based GNN for Gene Expression Prediction](https://openaccess.thecvf.com/content/CVPR2025/papers/Ganguly_MERGE_Multi-faceted_Hierarchical_Graph-based_GNN_for_Gene_Expression_Prediction_from_CVPR_2025_paper.pdf) | Gene Expression Prediction | WSI + ST | ST (General) | [Repo](https://github.com/ags3927/MERGE) |
+| 2025-02-25 AAAI | [DUSTED: Dual-Attention Enhanced Spatial Transcriptomics Denoiser](https://ojs.aaai.org/index.php/AAAI/article/view/32110) | Denoising, Imputation | ST | ST (General) | [Repo](https://github.com/Lifeomics/DUSTED) |
+| 2025-02-25 AAAI | [SpotDiff: Spatial Gene Expression Imputation Diffusion with Single-Cell RNA Integration](https://ojs.aaai.org/index.php/AAAI/article/view/33740) | Imputation | ST + scRNA-seq | ST (General) | - |
+| 2025-02-25 AAAI | [M2OST: Many-to-One Regression for Predicting Spatial Transcriptomics from Digital Pathology Images](https://ojs.aaai.org/index.php/AAAI/article/view/32830) | ST Prediction from Image | Pathology Images | ST (General) | [Repo](https://github.com/Dootmaan/M2OST) |
+| 2025-01-01 MICCAI | [Deep Association Multimodal Learning for Zero-shot Spatial Transcriptomics Prediction (ALIGN-ST)](https://papers.miccai.org/miccai-2025/paper/2218_paper.pdf) | Zero-shot Prediction | H&E + Text | ST (General) | [Repo](https://github.com/DeepMed-Lab-ECNU/ALIGN-ST) |
+| 2025-01-01 MICCAI | [Adaptive Spatial Transcriptomics Interpolation via Cross-modal Cross-slice Modeling (C2-STi)](https://papers.miccai.org/miccai-2025/paper/0326_paper.pdf) | Slice Interpolation | H&E + ST | ST (3D) | [Repo](https://github.com/XiaofeiWang2018/C2-STi) |
+| 2025-01-01 SPIE | [Renal Cell Type and State Estimation in Brightfield Histology Images](https://doi.org/10.1117/12.3047996) | Cell Type Estimation | H&E + Text | Visium | - |
 | 2025-01-01 MIDL | [MagNet: Multi-Level Attention Graph Network for Predicting High-Resolution Spatial Transcriptomics](https://arxiv.org/abs/2502.21011) | High-res ST Prediction | Histology + ST | Visium + High-res | [repo]( https://github.com/Junchao-Zhu/MagNet) |
-| 2024-06-17 CVPR | [Accurate Spatial Gene Expression Prediction by Integrating Multi-Resolution Features (TRIPLEX)](https://openaccess.thecvf.com) | Spatial Gene Expression Prediction | H&E + ST | ST (General) | - |
-| 2024-01-01 MICCAI | [Enhancing Gene Expression Prediction from Histology Images with Spatial Transcriptomics Completion](https://papers.miccai.org) | Imputation / Prediction | H&E + ST | ST (General) | - |
-| 2024-01-01 MICCAI | [Spatial Transcriptomics Analysis of Zero-shot Gene Expression Prediction](https://papers.miccai.org) | Zero-shot Prediction | H&E + ST + Text | ST (General) | - |
-| 2024-01-01 MICCAI | [Cross-modal Diffusion Modelling for Super-resolved Spatial Transcriptomics](https://papers.miccai.org) | Super-resolution | H&E + ST | ST (General) | - |
+| 2024-06-17 CVPR | [Accurate Spatial Gene Expression Prediction by Integrating Multi-Resolution Features (TRIPLEX)](https://arxiv.org/abs/2403.07592) | Spatial Gene Expression Prediction | H&E + ST | ST (General) | [Repo](https://github.com/NEXGEM/TRIPLEX) |
+| 2024-01-01 MICCAI | [Enhancing Gene Expression Prediction from Histology Images with Spatial Transcriptomics Completion](https://arxiv.org/abs/2407.13027) | Imputation / Prediction | H&E + ST | ST (General) | - |
+| 2024-01-01 MICCAI | [Spatial Transcriptomics Analysis of Zero-shot Gene Expression Prediction](https://papers.miccai.org/miccai-2024/paper/2573_paper.pdf) | Zero-shot Prediction | H&E + ST + Text | ST (General) | - |
+| 2024-01-01 MICCAI | [Cross-modal Diffusion Modelling for Super-resolved Spatial Transcriptomics](https://papers.miccai.org/miccai-2024/paper/2317_paper.pdf) | Super-resolution | H&E + ST | ST (General) | - |
 | 2024-01-01 ISBI | [Forecasting Embryonic Development: A Spatial Transcriptomics Approach](https://ieeexplore.ieee.org) | Spatiotemporal Forecasting | ST + Morphology | ST (General) | - |
 | 2023-09-25 NeurIPS | [Spatially Resolved Gene Expression Prediction from H&E Histology Images via Bi-modal Contrastive Learning](https://arxiv.org/abs/2306.01859) | Gene expression prediction | H&E + ST | Both | - |
 | 2023-01-03 IEEE/CVF WACV | [Exemplar guided deep neural network for spatial transcriptomics analysis of gene expression prediction](https://openaccess.thecvf.com/content/WACV2023/papers/Yang_Exemplar_Guided_Deep_Neural_Network_for_Spatial_Transcriptomics_Analysis_of_WACV_2023_paper.pdf) | Gene expression | H&E | Spatial Transcriptomics | [Repo](https://github.com/Yan98/EGN) |
