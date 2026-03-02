@@ -2,16 +2,33 @@
 
 Papers related to spatial omics but not focused on prediction tasks. For prediction-focused papers, see [README.md](README.md).
 
-Auto-generated from `README.md`. Last update: 2026-02-01.
+Auto-generated from `README.md`. Last update: 2026-02-08.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-02-04 arXiv | [ImmuVis: Hyperconvolutional Foundation Model for Imaging Mass Cytometry](https://arxiv.org/abs/2602.04585v1) | Virtual staining / Classification | IMC | IMC | - |
+| 2026-02-02 arXiv | [hSNMF: Hybrid Spatially Regularized NMF for Image-Derived Spatial Transcriptomics](https://arxiv.org/abs/2602.02638v1) | ST clustering | ST | iST (Xenium) | [Repo](https://github.com/ishtyaqmahmud/hSNMF) |
+| 2026-01-31 Bioinformatics | [A spectral dimension reduction technique that improves pattern detection in multivariate spatial data](https://doi.org/10.1093/bioinformatics/btag052) | Dimension reduction / Spatial pattern detection | ST | ST (General) | [Repo](https://github.com/IMSBCompBio/SpaCo) |
+| 2026-01-29 PLOS Computational Biology | [SpaConTDS: A multimodal contrastive learning framework for identifying spatial domains by applying tuple disturbing strategy](https://doi.org/10.1371/journal.pcbi.1013893) | Spatial domain identification | H&E + ST | ST (General) | - |
 | 2026-01-27 Bioinformatics | [STransfer: A Transfer Learning-Enhanced Graph Convolutional Network for Clustering Spatial Transcriptomics Data](https://doi.org/10.1093/bioinformatics/btag049) | ST clustering | ST | ST (General) | [Repo](https://github.com/Saki-JSU/Publications/tree/main/STransfer) |
+| 2026-01-06 Briefings in Bioinformatics | [PathCLAST: pathway-augmented contrastive learning with attention for interpretable spatial transcriptomics](https://doi.org/10.1093/bib/bbag029) | Spatial domain identification | H&E + ST | ST (General) | - |
+| 2026-01-22 bioRxiv | [SUMC reveals conserved and context-specific tumor microenvironment architectures across heterogeneous spatial datasets](https://doi.org/10.21203/rs.3.rs-8197716/v1) | Cross-sample ST integration / Meta-clustering | ST | ST (General) | - |
+| 2026-01-20 Nature Genetics | [Impact and correction of segmentation errors in spatial transcriptomics](https://doi.org/10.1038/s41588-025-02497-4) | Segmentation error correction | ST | iST (multiple) | - |
+| 2026-01-16 bioRxiv | [Mitigating Bias in Spatial Transcriptomic Pipelines via Human Feedback](https://www.biorxiv.org/content/10.64898/2026.01.15.699786v1) | Differential expression bias correction | ST | iST (General) | [Repo](https://github.com/YosefLab/CSDE) |
+| 2026-01-14 bioRxiv | [3D reconstruction of spatial transcriptomics with spatial pattern enhanced graph convolutional neural network](https://www.biorxiv.org/content/10.64898/2026.01.13.699328v1) | 3D ST reconstruction | ST | ST (General) | - |
+| 2026-01-16 bioRxiv | [Mitigating Bias in Spatial Transcriptomic Pipelines via Human Feedback (CSDE)](https://doi.org/10.64898/2026.01.15.699786) | Differential expression correction | ST | iST (General) | [Repo](https://github.com/YosefLab/CSDE) |
+| 2026-01-15 Nature Methods | [Integration of imaging-based and sequencing-based spatial omics mapping on the same tissue section via DBiTplus](https://doi.org/10.1038/s41592-025-02948-0) | Multi-modal spatial omics profiling | ST + Protein imaging | DBiT-seq | - |
+| 2026-01-14 bioRxiv | [3D reconstruction of spatial transcriptomics with spatial pattern enhanced graph convolutional neural network (Spa3D)](https://doi.org/10.64898/2026.01.13.699328) | 3D ST reconstruction | ST | ST (General) | - |
+| 2026-01-13 bioRxiv | [ST-LDAW: A Topic-Model and Damped Weighted Least-Squares Method for Integrative Deconvolution of Single-Cell and Spatial Transcriptomics](https://doi.org/10.21203/rs.3.rs-8566542/v1) | Cell-type deconvolution | ST + scRNA-seq | ST (General) | - |
+| 2026-01-13 bioRxiv | [Microenvironment-aware transcriptome reconstruction in spatial transcriptomics (Emerge)](https://doi.org/10.21203/rs.3.rs-8566824/v1) | Transcriptome reconstruction / Imputation | iST + scRNA-seq | iST (MERFISH/Xenium) | - |
+| 2026-01-13 Nature Computational Science | [Denoising spatial epigenomic data via deep matrix factorization](https://doi.org/10.1038/s43588-025-00941-3) | Spatial epigenomic denoising | SE | SE (General) | - |
+| 2026-01-12 bioRxiv | [SCALPEL: A pipeline for processing large-scale spatial transcriptomics data](https://doi.org/10.64898/2026.01.09.698732) | Large-scale ST processing | ST | ST (General) | - |
 | 2026-01-07 Nature Communications | [Spatially resolved integrative analysis of transcriptomic and metabolomic changes in tissue injury studies](https://doi.org/10.1038/s41467-025-68003-w) | Multi-omics integration | ST + MSI + H&E | Visium + MALDI/DESI | - |
 | 2026-01-06 Nature Computational Science | [Unlocking single-cell level and continuous whole-slide insights in spatial transcriptomics with PanoSpace](https://doi.org/10.1038/s43588-025-00938-y) | ST reconstruction / Imputation | H&E + ST + scRNA | ST (General) | - |
 | 2026-01-05 Nature Computational Science | [Decoding cell state transitions driven by dynamic cell-cell communication in spatial transcriptomics](https://doi.org/10.1038/s43588-025-00934-2) | Cell-cell communication dynamics | ST | ST (General) | - |
+| 2026-01-06 Briefings in Bioinformatics | [PathCLAST: pathway-augmented contrastive learning with attention for interpretable spatial transcriptomics](https://doi.org/10.1093/bib/bbag029) | Spatial domain identification | H&E + ST | ST (General) | [Repo](https://github.com/sslim-aidrug/PathCLAST) |
 | 2026-01-01 Bioinformatics | [SpatialRNA: a Python package for easy application of Graph Neural Network models on single-molecule spatial transcriptomics dataset](https://doi.org/10.1093/bioinformatics/btaf659) | Spatial domain detection | iST | iST (General) | [Repo](https://github.com/ruqianl/spatialrna) |
 | 2026-01-01 Bioinformatics | [STAHD: a scalable and accurate method to detect spatial domains in high-resolution spatial transcriptomics data](https://doi.org/10.1093/bioinformatics/btaf619) | Spatial domain detection | ST | ST (High-res) | [Repo](https://github.com/Little-Eel/STAHD) |
 | 2026-01-01 Bioinformatics | [Spider: a flexible and unified framework for simulating spatial transcriptomics data](https://doi.org/10.1093/bioinformatics/btaf562) | ST simulation | ST | ST (General) | [Repo](https://github.com/YANG-ERA/Spider) |

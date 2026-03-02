@@ -31,6 +31,24 @@ HEADERS = {
 }
 TIMEOUT = 30
 
+PREDICTION_KEYWORDS = {
+    "gene expression prediction",
+    "cell-type deconvolution",
+    "cell type deconvolution",
+    "transcriptome reconstruction",
+    "spatial proteomics prediction",
+}
+
+
+def _classify_topic(paper):
+    """Classify a paper as 'prediction' or 'analysis' based on keywords."""
+    for kw in paper.get("keywords", []):
+        kw_lower = kw.lower()
+        for pred_kw in PREDICTION_KEYWORDS:
+            if pred_kw in kw_lower:
+                return "prediction"
+    return "analysis"
+
 
 # ---------------------------------------------------------------------------
 # 1. Parse weekly report
@@ -435,6 +453,15 @@ HTML_TEMPLATE = """\
   .card-nofig .meta {{ font-size: 0.72rem; color: #4A4A4A; margin-bottom: 0.4rem; }}
   .card-nofig .keywords {{ display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.4rem; }}
   .card-nofig .summary {{ font-size: 0.78rem; line-height: 1.5; color: #000000; }}
+  .highlight-box {{ background: #FDF6F6; border: 1px solid #D9D9D9; border-top: 3px solid #8B1E1E; padding: 1.2rem 1.5rem; margin: 1.5rem 0; }}
+  .highlight-title {{ font-size: 1rem; font-weight: bold; color: #8B1E1E; margin-bottom: 0.8rem; }}
+  .highlight-table {{ width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-bottom: 0.8rem; }}
+  .highlight-table th {{ text-align: left; padding: 0.35rem 0.5rem; border-bottom: 2px solid #8B1E1E; font-size: 0.72rem; color: #4A4A4A; }}
+  .highlight-table td {{ padding: 0.35rem 0.5rem; border-bottom: 1px solid #D9D9D9; }}
+  .highlight-table a {{ color: #8B1E1E; text-decoration: none; }}
+  .highlight-table a:hover {{ text-decoration: underline; }}
+  .highlight-notes {{ font-size: 0.75rem; color: #4A4A4A; line-height: 1.6; margin-top: 0.5rem; }}
+  .highlight-notes li {{ margin-bottom: 0.3rem; }}
   @media (max-width: 600px) {{ .grid {{ grid-template-columns: 1fr; }} }}
 </style>
 </head>
@@ -447,9 +474,9 @@ HTML_TEMPLATE = """\
 <hr class="header-rule">
 <hr class="header-rule2">
 <p class="subtitle">{date}</p>
-{journal_section}
-{arxiv_section}
-{nofig_section}
+{highlight_section}
+{prediction_section}
+{analysis_section}
 </div>
 </body>
 </html>
@@ -480,6 +507,53 @@ NOFIG_SECTION_TEMPLATE = """\
 {cards}
 </div>"""
 
+HIGHLIGHT_SECTION_TEMPLATE = """\
+<div class="highlight-box">
+  <div class="highlight-title">Topic Highlight: Gene Normalization Methods</div>
+  <table class="highlight-table">
+    <tr><th>Paper</th><th>Normalization Method</th><th>Applied To</th><th>Tools</th></tr>
+{rows}
+  </table>
+  <div class="highlight-notes">
+    <strong>Key Takeaways</strong>
+    <ul>
+      <li>Most prediction methods use <strong>log transformation + min-max scaling</strong> or <strong>SCTransform</strong> for target gene expression.</li>
+      <li><strong>Total count normalization</strong> followed by log transform is the most common baseline; Harmony adds batch correction across slices.</li>
+      <li><strong>STRank</strong> challenges conventional normalization — rank-based losses may preserve statistical properties better than count normalization.</li>
+      <li>Benchmarking studies show method-specific normalization choices can <strong>significantly affect prediction performance</strong>.</li>
+    </ul>
+  </div>
+</div>"""
+
+
+def _build_normalization_highlight(report_path: str) -> str:
+    """Build the gene normalization highlight section from gene_normalization_methods.md."""
+    report_dir = os.path.dirname(os.path.abspath(report_path))
+    md_path = os.path.join(report_dir, "gene_normalization_methods.md")
+    if not os.path.isfile(md_path):
+        return ""
+    text = Path(md_path).read_text(encoding="utf-8")
+    # Parse table rows: | [Paper](url) | Method | Applied To | Tools |
+    row_re = re.compile(
+        r"^\|\s*\[(.+?)\]\((.+?)\)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|$",
+        re.MULTILINE,
+    )
+    rows = []
+    for m in row_re.finditer(text):
+        name, url, method, applied_to, tools = (
+            m.group(1), m.group(2), m.group(3), m.group(4), m.group(5),
+        )
+        # Skip image normalization methods — only include gene expression normalization
+        if "image" in applied_to.lower():
+            continue
+        rows.append(
+            f'    <tr><td><a href="{url}">{name}</a></td>'
+            f"<td>{method}</td><td>{applied_to}</td><td>{tools}</td></tr>"
+        )
+    if not rows:
+        return ""
+    return HIGHLIGHT_SECTION_TEMPLATE.format(rows="\n".join(rows))
+
 
 def _render_card(paper: dict, template: str, img_src: str | None = None) -> str:
     kw_html = "".join(f'<span class="kw">{k}</span>' for k in paper["keywords"])
@@ -503,46 +577,51 @@ SECTION_TEMPLATE = """\
 </div>"""
 
 
-def generate_html(papers: list[dict], figures: list[tuple[str, str, bool]], report_date: str) -> str:
-    journal_fig, arxiv_fig, no_fig = [], [], []
+def _render_topic_section(title: str, fig_items: list, nofig_items: list) -> str:
+    """Render a topic section with figure cards and no-figure cards."""
+    if not fig_items and not nofig_items:
+        return ""
+    parts = [f'<h2 class="section-title">{title}</h2>']
+    if fig_items:
+        fig_cards = []
+        for paper, fpath, mime in fig_items:
+            fig_cards.append(_render_card(paper, CARD_TEMPLATE, img_src=_img_to_base64(fpath, mime)))
+        parts.append(f'<div class="grid">\n{chr(10).join(fig_cards)}\n</div>')
+    if nofig_items:
+        nofig_cards = [_render_card(p, CARD_NOFIG_TEMPLATE) for p in nofig_items]
+        parts.append(NOFIG_SECTION_TEMPLATE.format(cards="\n".join(nofig_cards)))
+    return "\n".join(parts)
+
+
+def generate_html(papers: list[dict], figures: list[tuple[str, str, bool]],
+                  report_date: str, report_path: str = "") -> str:
+    pred_fig, pred_nofig = [], []
+    analysis_fig, analysis_nofig = [], []
+
     for paper, (fpath, mime, has_figure) in zip(papers, figures):
-        if not has_figure:
-            no_fig.append((paper,))
-        elif paper["publisher"].lower() == "arxiv":
-            arxiv_fig.append((paper, fpath, mime))
+        topic = _classify_topic(paper)
+        if topic == "prediction":
+            if has_figure:
+                pred_fig.append((paper, fpath, mime))
+            else:
+                pred_nofig.append(paper)
         else:
-            journal_fig.append((paper, fpath, mime))
+            if has_figure:
+                analysis_fig.append((paper, fpath, mime))
+            else:
+                analysis_nofig.append(paper)
 
-    def _render_fig_cards(items):
-        cards = []
-        for paper, fpath, mime in items:
-            cards.append(_render_card(paper, CARD_TEMPLATE, img_src=_img_to_base64(fpath, mime)))
-        return cards
-
-    journal_section = ""
-    if journal_fig:
-        journal_section = SECTION_TEMPLATE.format(
-            title="Papers from High-Impact Journals",
-            cards="\n".join(_render_fig_cards(journal_fig)),
-        )
-
-    arxiv_section = ""
-    if arxiv_fig:
-        arxiv_section = SECTION_TEMPLATE.format(
-            title="Papers from arXiv",
-            cards="\n".join(_render_fig_cards(arxiv_fig)),
-        )
-
-    nofig_section = ""
-    if no_fig:
-        nofig_cards = [_render_card(p, CARD_NOFIG_TEMPLATE) for (p,) in no_fig]
-        nofig_section = NOFIG_SECTION_TEMPLATE.format(cards="\n".join(nofig_cards))
+    highlight_section = _build_normalization_highlight(report_path) if report_path else ""
+    prediction_section = _render_topic_section(
+        "Spatial Omics Prediction Methods", pred_fig, pred_nofig)
+    analysis_section = _render_topic_section(
+        "Spatial Omics Analysis Tools", analysis_fig, analysis_nofig)
 
     return HTML_TEMPLATE.format(
         date=report_date,
-        journal_section=journal_section,
-        arxiv_section=arxiv_section,
-        nofig_section=nofig_section,
+        highlight_section=highlight_section,
+        prediction_section=prediction_section,
+        analysis_section=analysis_section,
     )
 
 
@@ -594,7 +673,7 @@ def main():
             time.sleep(1)  # polite delay
 
     # Generate HTML
-    html = generate_html(papers, figures, report_date)
+    html = generate_html(papers, figures, report_date, report_path=args.report)
     Path(out_path).write_text(html, encoding="utf-8")
     print(f"\nGenerated: {out_path}")
 

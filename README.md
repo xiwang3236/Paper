@@ -1,14 +1,17 @@
 # Spatial Omics Prediction Papers
 
-Last update: 2026-02-01.
+Last update: 2026-02-08.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-02-05 arXiv | [STProtein: predicting spatial protein expression from multi-omics data](https://arxiv.org/abs/2602.05811v1) | Spatial protein expression | ST | ST (General) | - |
+| 2026-02-02 arXiv | [MoLF: Mixture-of-Latent-Flow for Pan-Cancer Spatial Gene Expression Prediction from Histology](https://arxiv.org/abs/2602.02282v1) | Gene expression (pan-cancer) | H&E | ST (General) | - |
 | 2026-01-29 arXiv | [HistoPrism: Unlocking Functional Pathway Analysis from Pan-Cancer Histology via Gene Expression Prediction](https://arxiv.org/abs/2601.21560v1) | Gene expression (pathway-level) | H&E | None (TCGA) | - |
 | 2026-01-16 Nature Communications | [Robust and interpretable prediction of gene markers and cell types from spatial transcriptomics data](https://doi.org/10.1038/s41467-026-68487-0) | Gene expression + Cell type | H&E | Both | - |
 | 2026-01-16 NPJ Artificial Intelligence | [A multimodal framework to identify molecular mechanisms driving patient group-associated morphology through the integration of spatial transcriptomics and whole slide imaging](https://doi.org/10.1038/s44387-025-00050-6) | Molecular mechanism identification | H&E + ST | ST (General) | - |
+| 2026-01-09 Nature Communications | [sCellST predicts single-cell gene expression from H&E images](https://doi.org/10.1038/s41467-025-67965-1) | Gene expression (single-cell) | H&E | ST (General) | - |
 | 2026-01-05 Nature Medicine | [AI-enabled virtual spatial proteomics from histopathology for interpretable biomarker discovery in lung cancer](https://www.nature.com/articles/s41591-025-04060-4) | Protein expression (40 biomarkers) | H&E | None | - |
 | 2025-12-31 Nature Communications | [Generating crossmodal gene expression from cancer histopathology improves multimodal AI predictions](https://doi.org/10.1038/s41467-025-66961-9) | Gene expression (crossmodal) | H&E | None (TCGA/CPTAC) | [Repo](https://github.com/Samiran-Dey/PathGen) |
 | 2025-12-17 Nature Methods | [High-parameter spatial multi-omics through histology-anchored integration](https://doi.org/10.1038/s41592-025-02926-6) | Multi-omics prediction | H&E + ST | Both | - |
