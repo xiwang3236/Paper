@@ -6,6 +6,7 @@ Last update: 2026-02-01.
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-03-11 arXiv | [MAD: Microenvironment-Aware Distillation -- A Pretraining Strategy for Virtual Spatial Omics from Microscopy](https://arxiv.org/abs/2603.13401) | Virtual spatial omics (cell subtyping + transcriptomic prediction) | Microscopy | - | - |
 | 2026-01-29 arXiv | [HistoPrism: Unlocking Functional Pathway Analysis from Pan-Cancer Histology via Gene Expression Prediction](https://arxiv.org/abs/2601.21560v1) | Gene expression (pathway-level) | H&E | None (TCGA) | - |
 | 2026-01-16 Nature Communications | [Robust and interpretable prediction of gene markers and cell types from spatial transcriptomics data](https://doi.org/10.1038/s41467-026-68487-0) | Gene expression + Cell type | H&E | Both | - |
 | 2026-01-16 NPJ Artificial Intelligence | [A multimodal framework to identify molecular mechanisms driving patient group-associated morphology through the integration of spatial transcriptomics and whole slide imaging](https://doi.org/10.1038/s44387-025-00050-6) | Molecular mechanism identification | H&E + ST | ST (General) | - |
