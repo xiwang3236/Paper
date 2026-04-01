@@ -1,11 +1,24 @@
 # Spatial Omics Prediction Papers
 
-Last update: 2026-02-08.
+Last update: 2026-04-01.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-03-27 arXiv | [Central-to-Local Adaptive Generative Diffusion Framework for Improving Gene Expression Prediction in Data-Limited Spatial Transcriptomics](https://arxiv.org/abs/2603.26827v1) | Gene expression prediction (diffusion augmentation) | H&E + ST | Both | - |
+| 2026-03-26 arXiv | [FEAST: Fully Connected Expressive Attention for Spatial Transcriptomics](https://arxiv.org/abs/2603.25247v1) | Gene expression prediction from H&E | H&E | Seq(Visium) | [Repo](https://github.com/starforTJ/FEAST) |
+| 2026-03-24 arXiv | [Cross-Slice Knowledge Transfer via Masked Multi-Modal Heterogeneous Graph Contrastive Learning for Spatial Gene Expression Inference (SpaHGC)](https://arxiv.org/abs/2603.22821v1) | Gene expression prediction from H&E | H&E | Both | - |
+| 2026-03-20 arXiv | [Adapting a Pre-trained Single-Cell Foundation Model to Spatial Gene Expression Generation from Histology Images (HINGE)](https://arxiv.org/abs/2603.19766v1) | Histology-conditioned gene expression generation | H&E | Seq(Visium) | - |
+| 2026-03-19 arXiv | [Cell-Type Prototype-Informed Neural Network for Gene Expression Estimation from Pathology Images (CPNN)](https://arxiv.org/abs/2603.18461v1) | Gene expression prediction from H&E | H&E + scRNA-seq | Seq(Visium) | [Repo](https://github.com/naivete5656/CPNN) |
+| 2026-03-16 Nature Communications | [FineST: contrastive learning integrates histology and spatial transcriptomics for nuclei-resolved ligand-receptor analysis](https://doi.org/10.1038/s41467-026-70528-7) | High-resolution RNA expression imputation; cell type prediction | H&E + ST | Both | - |
+| 2026-03-16 Cell Reports Methods | [Tissue morphology predicts telomere shortening in human tissues (TLPath)](https://doi.org/10.1016/j.crmeth.2026.101336) | Telomere length prediction from H&E | H&E | - | - |
+| 2026-03-16 arXiv | [BiTro: Bidirectional Transfer Learning Enhances Bulk and Spatial Transcriptomics Prediction in Cancer Pathological Images](https://arxiv.org/abs/2603.14897v1) | Bulk and spatial gene expression prediction from H&E | H&E + ST | Seq(Visium) | - |
+| 2026-03-12 bioRxiv | [CoxFormer enables spatial omics inference with multimodal generative modeling](https://doi.org/10.21203/rs.3.rs-9062650/v1) | Transcriptome-wide spatial gene expression inference | H&E + ST | Both | - |
+| 2026-03-11 arXiv | [MAD: Microenvironment-Aware Distillation — A Pretraining Strategy for Virtual Spatial Omics from Microscopy](https://arxiv.org/abs/2603.13401v1) | Cell subtyping and transcriptomic prediction from microscopy | H&E | Both | - |
+| 2026-03-09 arXiv | [MINT: Molecularly Informed Training with Spatial Transcriptomics Supervision for Pathology Foundation Models](https://arxiv.org/abs/2603.07895v1) | Gene expression prediction from H&E (foundation model) | H&E | Both | - |
+| 2026-03-06 arXiv | [SpaCRD: Multimodal Deep Fusion of Histology and Spatial Transcriptomics for Cancer Region Detection](https://arxiv.org/abs/2603.06186v1) | Cancer tissue region detection from H&E + ST | H&E + ST | Both | - |
+| 2026-03-03 IEEE Transactions on Medical Imaging | [Disentangled Multi-modal Learning of Histology and Transcriptomics for Cancer Characterization](https://doi.org/10.1109/tmi.2026.3669968) | Cancer diagnosis and prognosis from H&E + transcriptomics | H&E + ST | - | - |
 | 2026-02-05 arXiv | [STProtein: predicting spatial protein expression from multi-omics data](https://arxiv.org/abs/2602.05811v1) | Spatial protein expression | ST | ST (General) | - |
 | 2026-02-02 arXiv | [MoLF: Mixture-of-Latent-Flow for Pan-Cancer Spatial Gene Expression Prediction from Histology](https://arxiv.org/abs/2602.02282v1) | Gene expression (pan-cancer) | H&E | ST (General) | - |
 | 2026-01-29 arXiv | [HistoPrism: Unlocking Functional Pathway Analysis from Pan-Cancer Histology via Gene Expression Prediction](https://arxiv.org/abs/2601.21560v1) | Gene expression (pathway-level) | H&E | None (TCGA) | - |

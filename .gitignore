@@ -5,8 +5,8 @@ knowledge/papers/
 knowledge/summaries/
 output/
 pdfs/
-temp/
-reports/
+*.eml
+*.html
 
 
 nul
