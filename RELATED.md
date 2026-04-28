@@ -2,12 +2,20 @@
 
 Papers related to spatial omics but not focused on prediction tasks. For prediction-focused papers, see [README.md](README.md).
 
-Auto-generated from `README.md`. Last update: 2026-02-01.
+Auto-generated from `README.md`. Last update: 2026-04-28.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-04-24 Nature Genetics | [SpaMosaic: Mosaic integration of spatial multi-omics](https://doi.org/10.1038/s41588-026-02573-3) | Multi-omics mosaic integration + spatial domain identification | ST (RNA + ATAC + protein + histone) | ST (General) | - |
+| 2026-04-26 arXiv | [VitaminP: cross-modal learning enables whole-cell segmentation from routine histology](https://arxiv.org/abs/2604.23799) | Whole-cell segmentation | H&E + mIF | General | - |
+| 2026-04-17 Bioinformatics | [DualCellChat: Reconstructing cell-cell interaction network in single-cell spatial transcriptomics via directed heterogeneous graph autoencoder](https://doi.org/10.1093/bioinformatics/btag130) | Cell-cell interaction inference | ST | iST (General) | [Repo](https://github.com/JinxianHu/DualCellChat) |
+| 2026-04-15 Nature Communications | [COZI: Comparison and optimization of cellular neighbor preference methods for quantitative tissue analysis](https://doi.org/10.1038/s41467-026-71699-z) | Spatial neighbor preference analysis | ST | ST (General) | - |
+| 2026-04-10 Nature Communications | [RESCUE: recovery of unattributed expression patterns in spatial transcriptomics](https://doi.org/10.1038/s41467-026-71720-5) | Unattributed expression recovery | ST | iST (General) | - |
+| 2026-04-03 Nature Computational Science | [Benchmarking alignment methods for spatial transcriptomics data](https://doi.org/10.1038/s43588-026-00977-z) | ST slice alignment benchmark | ST | ST (General) | - |
+| 2026-04-03 Bioinformatics | [DEGAS Spatial Smoothing: Identification of High-Risk Cells in Single-Cell Spatially Resolved Transcriptomics Data](https://doi.org/10.1093/bioinformatics/btag098) | High-risk cell identification | ST | iST (General) | [Repo](https://github.com/tsteelejohnson91/DEGAS) |
+| 2026-04-01 Bioinformatics | [SA2E: spatial-aware auto-encoder for cell type deconvolution of spatial transcriptomics data](https://doi.org/10.1093/bioinformatics/btag133) | Cell type deconvolution | ST + scRNA-seq | Seq(Visium) | [Repo](https://github.com/xkmaxidian/SA2E) |
 | 2026-01-27 Bioinformatics | [STransfer: A Transfer Learning-Enhanced Graph Convolutional Network for Clustering Spatial Transcriptomics Data](https://doi.org/10.1093/bioinformatics/btag049) | ST clustering | ST | ST (General) | [Repo](https://github.com/Saki-JSU/Publications/tree/main/STransfer) |
 | 2026-01-07 Nature Communications | [Spatially resolved integrative analysis of transcriptomic and metabolomic changes in tissue injury studies](https://doi.org/10.1038/s41467-025-68003-w) | Multi-omics integration | ST + MSI + H&E | Visium + MALDI/DESI | - |
 | 2026-01-06 Nature Computational Science | [Unlocking single-cell level and continuous whole-slide insights in spatial transcriptomics with PanoSpace](https://doi.org/10.1038/s43588-025-00938-y) | ST reconstruction / Imputation | H&E + ST + scRNA | ST (General) | - |

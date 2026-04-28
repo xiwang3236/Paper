@@ -1,0 +1,43 @@
+{
+  "project_name": "Spatial Omics Prediction Papers",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "topics": [
+    "spatial-transcriptomics",
+    "gene-expression-prediction",
+    "histology",
+    "digital-pathology",
+    "cell-type-deconvolution",
+    "super-resolution",
+    "foundation-model",
+    "graph-neural-network",
+    "virtual-staining",
+    "multi-omics-integration",
+    "spatial-proteomics"
+  ],
+  "platforms": ["Visium", "Xenium", "MERFISH", "Slide-seq", "CODEX", "CosMx"],
+  "search_terms": [
+    "spatial transcriptomics gene expression prediction histology",
+    "predict gene expression H&E deep learning",
+    "spatial omics ground truth image prediction",
+    "Visium Xenium H&E gene expression model",
+    "spatial gene expression prediction whole slide image",
+    "molecular expression prediction brightfield spatial omics"
+  ],
+  "institutional_access": {
+    "enabled": false,
+    "institution": "Case Western Reserve University",
+    "cas_login_url": "https://login.case.edu/cas/login",
+    "ezproxy_prefix": "",
+    "cookie_file": "data/cookies.txt",
+    "proxy": "",
+    "_help": {
+      "setup": "Run: python tools/mcp/export_cookies.py  — opens browser, you log in, cookies are saved automatically.",
+      "ezproxy_prefix": "Leave empty for CWRU — CAS SSO uses cookie-based auth instead.",
+      "cookie_file": "Path to exported browser cookies (Netscape cookies.txt or JSON). Default: data/cookies.txt",
+      "proxy": "Optional HTTP/SOCKS proxy URL, e.g. 'socks5://127.0.0.1:1080' for SSH tunnel to campus"
+    }
+  },
+  "min_year": 2020,
+  "pdf_dirs": ["../../pdfs/journal", "../../pdfs/conference"],
+  "readme_path": "../../README.md"
+}

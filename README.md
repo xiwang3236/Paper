@@ -1,11 +1,14 @@
 # Spatial Omics Prediction Papers
 
-Last update: 2026-02-01.
+Last update: 2026-04-28.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-04-26 Bioinformatics | [GR2ST: Spatial Transcriptomics Prediction based on Graph-Enhanced Multimodal Contrastive Learning](https://doi.org/10.1093/bioinformatics/btag209) | Gene expression prediction | H&E + ST | Seq(Visium) | [Repo](https://github.com/zjl1109294570/GR2ST) |
+| 2026-04-26 arXiv | [Leveraging Spatial Transcriptomics as Alternative to Manual Annotations for Deep Learning-Based Nuclei Analysis](https://arxiv.org/abs/2604.23481) | Cell type classification | H&E + ST | Both | - |
+| 2026-04-23 arXiv | [CHRep: Cross-modal Histology Representation and Post-hoc Calibration for Spatial Gene Expression Prediction](https://arxiv.org/abs/2604.21573) | Gene expression prediction | H&E | Seq(Visium) | - |
 | 2026-03-11 arXiv | [MAD: Microenvironment-Aware Distillation -- A Pretraining Strategy for Virtual Spatial Omics from Microscopy](https://arxiv.org/abs/2603.13401) | Virtual spatial omics (cell subtyping + transcriptomic prediction) | Microscopy | - | - |
 | 2026-01-29 arXiv | [HistoPrism: Unlocking Functional Pathway Analysis from Pan-Cancer Histology via Gene Expression Prediction](https://arxiv.org/abs/2601.21560v1) | Gene expression (pathway-level) | H&E | None (TCGA) | - |
 | 2026-01-16 Nature Communications | [Robust and interpretable prediction of gene markers and cell types from spatial transcriptomics data](https://doi.org/10.1038/s41467-026-68487-0) | Gene expression + Cell type | H&E | Both | - |
