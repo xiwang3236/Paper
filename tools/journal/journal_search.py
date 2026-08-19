@@ -1,4 +1,4 @@
-"""Search Europe PMC for spatial omics papers in high-impact journals."""
+"""Search Europe PMC for spatial omics papers in high-impact journals and preprint servers."""
 
 import urllib.request
 import urllib.parse
@@ -8,13 +8,32 @@ import os
 import argparse
 
 JOURNALS = {
-    "Nature Methods": "1548-7105",
-    "Nature Genetics": "1546-1718",
-    "Bioinformatics": "1367-4811",
-    "Nature Machine Intelligence": "2522-5839",
-    "npj Artificial Intelligence": "3005-1460",
-    "Nature Communications": "2041-1723",
-    "Nature Computational Science": "2662-8457",
+# Methods / Spatial / Omics / Tech (IF >10)
+"Nature Methods": "1548-7091",                  # Gold standard for new experimental & computational methods
+"Genome Research": "1088-9051",                 # High-impact functional & computational genomics
+"Cell Systems": "2405-4712",                    # Systems biology + computational modeling
+"Trends in Biotechnology": "0167-7799",         # High-citation reviews on biotech & methods
+"Trends in Genetics": "0168-9525",               # Reviews in genomics, regulation, and methods
+"Nature Communications": "2041-1723",            # Broad, high-impact biology & computational work
+"Science Translational Medicine": "1946-6234",   # Translational & clinical tech applications
+
+# AI / Machine Learning / Data Science (IF >10)
+"Nature Machine Intelligence": "2522-5839",      # Top-tier AI/ML journal (methods + theory)
+"Information Fusion": "1566-2535",               # Multimodal data fusion, ML-heavy
+"IEEE Trans. Knowl. Data Eng.": "1041-4347",     # Data mining, ML systems, graphs
+"IEEE Trans. Medical Imaging": "0278-0062",      # Medical imaging + deep learning (very relevant)
+
+# Genomics / Computational Biology (IF >10)
+"Briefings in Bioinformatics": "1477-4054",      # Review-heavy, very high citation rate
+"Cell Reports Methods": "2667-2375",             # Cell-family methods journal
+"Patterns": "2666-3899",                         # Data science + ML across disciplines
+"eLife": "2050-084X",                            # Strong methods + computational biology
+
+# Reviews (Very High Citation Power)
+"Nature Reviews Molecular Cell Biology": "1471-0072",  # Mechanistic & systems-level biology
+"Nature Reviews Cancer": "1474-1768",                  # Spatial & omics-heavy cancer reviews
+"Annual Review of Genomics and Human Genetics": "1527-8204", # Authoritative genomics reviews
+
 }
 
 QUERY_TOPICS = {
@@ -53,6 +72,8 @@ QUERY_TOPICS = {
         '"multi-modal" AND "spatial omics"',
     ],
 }
+
+PREPRINT_SERVERS = ["bioRxiv", "medRxiv"]
 
 MAX_RESULTS = 100
 EUROPEPMC_API = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
@@ -213,11 +234,11 @@ def write_md(papers: list[dict], path: str, topic: str, days: int) -> None:
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        description="Search Europe PMC for spatial omics papers in high-impact journals.",
+        description="Search Europe PMC for spatial omics papers in high-impact journals and preprint servers.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Default: prediction topic, last 30 days
+  # Default: prediction topic, last 30 days (journals + preprints)
   python tools/journal/journal_search.py
 
   # Analysis topic, last 60 days
@@ -228,6 +249,9 @@ Examples:
 
   # Specific journal only
   python tools/journal/journal_search.py --journal "Nature Methods"
+
+  # Journals only, no preprints
+  python tools/journal/journal_search.py --no-preprints
 """
     )
     parser.add_argument(
@@ -259,6 +283,11 @@ Examples:
         default=MAX_RESULTS,
         help=f"Max results per query (default: {MAX_RESULTS})"
     )
+    parser.add_argument(
+        "--no-preprints",
+        action="store_true",
+        help="Skip bioRxiv/medRxiv preprint search"
+    )
     return parser.parse_args()
 
 
@@ -289,6 +318,36 @@ def fetch_and_process_topic(
     return papers
 
 
+def fetch_and_process_preprints(
+    topic: str, min_date: str, max_results: int
+) -> list[dict]:
+    """Fetch and process preprints (bioRxiv/medRxiv) for a single topic."""
+    print(f"\n=== Processing preprints for topic: {topic} ===")
+    today = datetime.date.today().isoformat()
+    keywords = QUERY_TOPICS[topic]
+    all_entries: list[dict] = []
+
+    for kw in keywords:
+        query = f"(SRC:PPR) AND ({kw}) AND FIRST_PDATE:[{min_date} TO {today}]"
+        print(f"Querying preprints: {kw}")
+        try:
+            raw = fetch_europepmc(query, max_results)
+            entries = parse_entries(raw)
+            # Fill in journal name for preprints that lack it
+            for e in entries:
+                if not e["journal"]:
+                    e["journal"] = "bioRxiv"
+            print(f"  Found {len(entries)} results")
+            all_entries.extend(entries)
+        except Exception as e:
+            print(f"  Error fetching results: {e}")
+
+    papers = deduplicate(all_entries, min_date)
+    papers.sort(key=lambda p: p["date"], reverse=True)
+    print(f"Total unique preprints for {topic}: {len(papers)}")
+    return papers
+
+
 def merge_and_deduplicate(
     topic_results: dict[str, list[dict]], min_date: str
 ) -> list[dict]:
@@ -314,31 +373,58 @@ def main() -> None:
         topics = [args.topic]
 
     topic_results = {}
+    preprint_results = {}
+
     for topic in topics:
+        # Journal search
         papers = fetch_and_process_topic(topic, min_date, args.max_results, args.journal)
         topic_results[topic] = papers
 
         if not papers:
-            print(f"No papers found for topic: {topic}")
-            continue
+            print(f"No journal papers found for topic: {topic}")
 
-        if args.all_topics:
-            txt_path = os.path.join(OUTPUT_DIR, f"journal_results_{topic}_{TODAY}.txt")
-            md_path = os.path.join(OUTPUT_DIR, f"JOURNAL_{topic}_{TODAY}.md")
-        else:
-            txt_path = OUTPUT_TXT
-            md_path = OUTPUT_MD
+        # Preprint search (bioRxiv/medRxiv)
+        if not args.no_preprints and not args.journal:
+            preprints = fetch_and_process_preprints(topic, min_date, args.max_results)
+            preprint_results[topic] = preprints
+            if not preprints:
+                print(f"No preprints found for topic: {topic}")
 
-        write_txt(papers, txt_path, topic, args.days)
-        print(f"Wrote {txt_path}")
+        # Per-topic output (journals only)
+        if papers:
+            if args.all_topics:
+                txt_path = os.path.join(OUTPUT_DIR, f"journal_results_{topic}_{TODAY}.txt")
+                md_path = os.path.join(OUTPUT_DIR, f"JOURNAL_{topic}_{TODAY}.md")
+            else:
+                txt_path = OUTPUT_TXT
+                md_path = OUTPUT_MD
 
-        write_md(papers, md_path, topic, args.days)
-        print(f"Wrote {md_path}")
+            write_txt(papers, txt_path, topic, args.days)
+            print(f"Wrote {txt_path}")
 
+            write_md(papers, md_path, topic, args.days)
+            print(f"Wrote {md_path}")
+
+        # Per-topic preprint output
+        if preprint_results.get(topic):
+            if args.all_topics:
+                pp_txt = os.path.join(OUTPUT_DIR, f"preprint_results_{topic}_{TODAY}.txt")
+                pp_md = os.path.join(OUTPUT_DIR, f"PREPRINT_{topic}_{TODAY}.md")
+            else:
+                pp_txt = os.path.join(OUTPUT_DIR, f"preprint_results_{TODAY}.txt")
+                pp_md = os.path.join(OUTPUT_DIR, f"PREPRINT_{TODAY}.md")
+
+            write_txt(preprint_results[topic], pp_txt, f"{topic} (preprints)", args.days)
+            print(f"Wrote {pp_txt}")
+
+            write_md(preprint_results[topic], pp_md, f"{topic} (preprints)", args.days)
+            print(f"Wrote {pp_md}")
+
+    # Combined output across all topics
     if args.all_topics and len(topic_results) > 1:
         print("\n=== Creating combined output ===")
         combined_papers = merge_and_deduplicate(topic_results, min_date)
-        print(f"Total unique papers across all topics: {len(combined_papers)}")
+        print(f"Total unique journal papers across all topics: {len(combined_papers)}")
 
         combined_txt = os.path.join(OUTPUT_DIR, f"journal_results_all_{TODAY}.txt")
         combined_md = os.path.join(OUTPUT_DIR, f"JOURNAL_all_{TODAY}.md")
@@ -348,6 +434,19 @@ def main() -> None:
 
         write_md(combined_papers, combined_md, "all", args.days)
         print(f"Wrote {combined_md}")
+
+        if preprint_results:
+            combined_preprints = merge_and_deduplicate(preprint_results, min_date)
+            print(f"Total unique preprints across all topics: {len(combined_preprints)}")
+
+            pp_txt = os.path.join(OUTPUT_DIR, f"preprint_results_all_{TODAY}.txt")
+            pp_md = os.path.join(OUTPUT_DIR, f"PREPRINT_all_{TODAY}.md")
+
+            write_txt(combined_preprints, pp_txt, "all (preprints)", args.days)
+            print(f"Wrote {pp_txt}")
+
+            write_md(combined_preprints, pp_md, "all (preprints)", args.days)
+            print(f"Wrote {pp_md}")
 
 
 if __name__ == "__main__":

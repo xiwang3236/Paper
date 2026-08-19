@@ -19,7 +19,7 @@ python tools/arxiv/arxiv_search.py
 python tools/journal/journal_search.py --all-topics --days 30
 ```
 
-This produces raw results (`temp/*_results_*.txt`) and draft tables (`temp/ARXIV_*.md`, `temp/JOURNAL_*.md`).
+This produces raw results (`temp/*_results_*.txt`) and draft tables (`temp/ARXIV_*.md`, `temp/JOURNAL_*.md`, `temp/PREPRINT_*.md`).
 
 ### Step 2 — Curate & extract metadata
 
@@ -117,35 +117,54 @@ python tools/arxiv/arxiv_search.py --max-results 100
 
 Results are deduplicated by arXiv ID and sorted by date descending.
 
-## Journal Search Pipeline
+## Journal & Preprint Search Pipeline
 
-`tools/journal/journal_search.py` searches high-impact journals via the **Europe PMC API** for spatial omics papers. Stdlib only — no pip installs required.
+`tools/journal/journal_search.py` searches high-impact journals and preprint servers (bioRxiv/medRxiv) via the **Europe PMC API** for spatial omics papers. Stdlib only — no pip installs required.
 
 ### Target Journals
 
-Nature Methods, Nature Genetics, Bioinformatics, Nature Machine Intelligence, npj Artificial Intelligence, Nature Communications, Nature Computational Science.
+**Methods / Spatial / Omics / Tech:** Nature Methods, Genome Research, Cell Systems, Trends in Biotechnology, Trends in Genetics, Nature Communications, Science Translational Medicine.
+
+**AI / Machine Learning:** Nature Machine Intelligence, Information Fusion, IEEE Trans. Knowl. Data Eng., IEEE Trans. Medical Imaging.
+
+**Genomics / Computational Biology:** Briefings in Bioinformatics, Cell Reports Methods, Patterns, eLife.
+
+**Reviews:** Nature Reviews Molecular Cell Biology, Nature Reviews Cancer, Annual Review of Genomics and Human Genetics.
+
+### Preprint Servers
+
+bioRxiv and medRxiv preprints are searched automatically via Europe PMC's `SRC:PPR` source filter. Preprint search runs in parallel with journal search using the same keyword queries.
 
 ### Usage
 
 ```bash
-python tools/journal/journal_search.py                              # default: prediction, 30 days
+python tools/journal/journal_search.py                              # default: prediction, 30 days (journals + preprints)
 python tools/journal/journal_search.py --topic analysis --days 60
 python tools/journal/journal_search.py --all-topics
 python tools/journal/journal_search.py --journal "Nature Methods"
 python tools/journal/journal_search.py --max-results 200
+python tools/journal/journal_search.py --no-preprints               # journals only, skip bioRxiv/medRxiv
 ```
 
 **Arguments:**
 - `-t, --topic {prediction,analysis}` — select topic (default: prediction)
 - `-d, --days N` — fetch from last N days (default: 30, use 0 for all since 2023)
 - `-a, --all-topics` — run all topics (overrides --topic)
-- `-j, --journal NAME` — filter to a single journal
+- `-j, --journal NAME` — filter to a single journal (disables preprint search)
 - `-m, --max-results N` — max results per query (default: 100)
+- `--no-preprints` — skip bioRxiv/medRxiv preprint search
 
 ### Output Files
 
+**Journal results:**
 - `temp/journal_results_YYYY-MM-DD.txt` — raw results with title, journal, link, date, and abstract
 - `temp/JOURNAL_YYYY-MM-DD.md` — markdown table
+
+**Preprint results:**
+- `temp/preprint_results_YYYY-MM-DD.txt` — raw bioRxiv/medRxiv results
+- `temp/PREPRINT_YYYY-MM-DD.md` — markdown table
+
+When using `--all-topics`, per-topic files are generated (e.g., `journal_results_prediction_*.txt`, `preprint_results_analysis_*.txt`) plus combined `*_all_*` files.
 
 Results are deduplicated by DOI and sorted by date descending.
 
@@ -163,10 +182,10 @@ The `reports/` directory contains curated weekly reports of new spatial omics pa
 ### Report Rules
 
 - Journal papers: **1-month window** only
-- arXiv papers: **7-day window**
+- arXiv and bioRxiv preprints: **1-month window** (same as journals)
 - Papers sorted date descending within each section
 - Only computational method papers — no biology applications
-- Split into "Papers from High-Impact Journals" and "Papers from arXiv"
+- Split into "Papers from High-Impact Journals" and "Papers from arXiv and bioRxiv"
 
 ### Keywords
 
@@ -203,7 +222,7 @@ python tools/figures/fetch_figures.py --report reports/WEEKLY_2026-02-01.md --sk
 
 - **Header**: Dark red banner with "AI-Scholar" linking to the GitHub repo, followed by "Predictive Modeling in Spatial Omics" (red, bold) and "Recent Advances" (black)
 - **Signature**: Email (xxw962@case.edu) and GitHub link
-- **Sections**: "Papers from High-Impact Journals" and "Papers from arXiv", each with a 2-column card grid (single-column on narrow viewports)
+- **Sections**: "Papers from High-Impact Journals" and "Papers from arXiv and bioRxiv", each with a 2-column card grid (single-column on narrow viewports)
 - **Figure cards**: Image on top, title, date/publisher, bold keyword pills, summary
 - **No-figure cards**: Compact text-only cards with left red border accent, grouped at the bottom under "Papers without figures"
 

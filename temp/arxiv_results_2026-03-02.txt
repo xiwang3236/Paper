@@ -1,0 +1,15 @@
+arXiv Spatial Omics Papers - Topic: all
+Search period: 2026-02-18 to 2026-03-02 (12 days)
+Total papers: 2
+================================================================================
+
+Title: Transcending the Annotation Bottleneck: AI-Powered Discovery in Biology and Medicine
+Link: https://arxiv.org/abs/2602.20100v1
+Date: 2026-02-23
+Abstract: The dependence on expert annotation has long constituted the primary rate-limiting step in the application of artificial intelligence to biomedicine. While supervised learning drove the initial wave of clinical algorithms, a paradigm shift towards unsupervised and self-supervised learning (SSL) is currently unlocking the latent potential of biobank-scale datasets. By learning directly from the intrinsic structure of data - whether pixels in a magnetic resonance image (MRI), voxels in a volumetric scan, or tokens in a genomic sequence - these methods facilitate the discovery of novel phenotypes, the linkage of morphology to genetics, and the detection of anomalies without human bias. This article synthesises seminal and recent advances in "learning without labels," highlighting how unsupervised frameworks can derive heritable cardiac traits, predict spatial gene expression in histology, and detect pathologies with performance that rivals or exceeds supervised counterparts.
+---
+Title: LAMMI-Pathology: A Tool-Centric Bottom-Up LVLM-Agent Framework for Molecularly Informed Medical Intelligence in Pathology
+Link: https://arxiv.org/abs/2602.18773v1
+Date: 2026-02-21
+Abstract: The emergence of tool-calling-based agent systems introduces a more evidence-driven paradigm for pathology image analysis in contrast to the coarse-grained text-image diagnostic approaches. With the recent large-scale experimental adoption of spatial transcriptomics technologies, molecularly validated pathological diagnosis is becoming increasingly open and accessible. In this work, we propose LAMMI-Pathology (LVLM-Agent System for Molecularly Informed Medical Intelligence in Pathology), a scalable agent framework for domain-specific agent tool-calling. LAMMI-Pathology adopts a tool-centric, bottom-up architecture in which customized domain-adaptive tools serve as the foundation. These tools are clustered by domain style to form component agents, which are then coordinated through a top-level planner hierarchically, avoiding excessively long context lengths that could induce task drift. Based on that, we introduce a novel trajectory construction mechanism based on Atomic Execution Nodes (AENs), which serve as reliable and composable units for building semi-simulated reasoning trajectories that capture credible agent-tool interactions. Building on this foundation, we develop a trajectory-aware fine-tuning strategy that aligns the planner's decision-making process with these multi-step reasoning trajectories, thereby enhancing inference robustness in pathology understanding and its adaptive use of the customized toolset.
+---

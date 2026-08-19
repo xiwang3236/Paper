@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import datetime
 import os
 import argparse
+import time
 
 QUERY_TOPICS = {
     "prediction": [
@@ -72,8 +73,18 @@ def fetch_arxiv(query: str, max_results: int = MAX_RESULTS) -> str:
         "sortOrder": "descending",
     })
     url = f"{ARXIV_API}?{params}"
-    with urllib.request.urlopen(url, timeout=30) as resp:
-        return resp.read().decode("utf-8")
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(url, timeout=30) as resp:
+                return resp.read().decode("utf-8")
+        except Exception as e:
+            if "429" in str(e):
+                wait = 30 * (attempt + 1)
+                print(f"  Rate limited, waiting {wait}s before retry...")
+                time.sleep(wait)
+            else:
+                raise
+    raise RuntimeError("Failed after 3 attempts due to rate limiting")
 
 
 def parse_entries(xml_text: str) -> list[dict]:
@@ -230,6 +241,7 @@ def fetch_and_process_topic(topic: str, min_date: str, max_results: int) -> list
             all_entries.extend(entries)
         except Exception as e:
             print(f"  Error fetching results: {e}")
+        time.sleep(5)  # arXiv API requires >= 3s between requests
 
     papers = deduplicate(all_entries, min_date)
     papers.sort(key=lambda p: p["date"], reverse=True)

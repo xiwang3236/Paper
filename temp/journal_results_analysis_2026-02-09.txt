@@ -1,0 +1,29 @@
+Journal Spatial Omics Papers - Topic: analysis
+Search period: 2026-01-10 to 2026-02-09 (30 days)
+Total papers: 4
+================================================================================
+
+Title: Injured epithelial cell states impact kidney allograft survival after T-cell-mediated rejection
+Journal: Nature communications
+Link: https://doi.org/10.1038/s41467-026-68397-1
+Date: 2026-01-28
+Abstract: T-cell-mediated rejection (TCMR) remains a major cause of kidney transplant failure, despite being considered treatable. Its impact reflects a limited understanding of the underlying molecular mechanisms and their clinical consequences. To address this, we induced acute TCMR in mouse kidney transplants and profiled molecular changes using single-nucleus RNA sequencing (snRNA-seq), spatial transcriptomics and immunofluorescence. Results were compared with human snRNA-seq data from TCMR and stable allografts, as well as single-cell deconvolution analysis of bulk transcriptomic data from kidney transplant biopsies. Here we show that TCMR induces injured epithelial cell states in mouse kidney allografts, particularly in proximal tubules and thick ascending limbs. Spatial transcriptomics of these injured epithelial states demonstrated heterogeneous localization, interactions with immune cells and cellular microenvironments. Cross-species analysis confirmed similar severely injured epithelial states in human samples, whose abundances correlated with transplant survival and persisted despite TCMR resolution. Collectively, our results identify epithelial injury cell states as a determinant of outcome after TCMR.
+---
+Title: The IBEX knowledge-base a community resource enabling adoption and development of immunofluorescence imaging methods
+Journal: eLife
+Link: https://doi.org/10.7554/elife.105737
+Date: 2026-01-23
+Abstract: The iterative bleaching extends multiplexity (IBEX) Knowledge-Base is a central portal for researchers adopting IBEX and related 2D and 3D immunofluorescence imaging methods. The design of the Knowledge-Base is modeled after efforts in the open-source software community and includes three facets: a development platform (GitHub), static website, and service for data archiving. The Knowledge-Base facilitates the practice of open science throughout the research life cycle by providing validation data for recommended and non-recommended reagents, such as primary and secondary antibodies. In addition to reporting negative data, the Knowledge-Base empowers method adoption and evolution by providing a venue for sharing protocols, videos, datasets, software, and publications. A dedicated discussion forum fosters a sense of community among researchers while addressing questions not covered in published manuscripts. Together, scientists from around the world are advancing scientific discovery at a faster pace, reducing wasted time and effort, and instilling greater confidence in the resulting data.
+---
+Title: Integration of imaging-based and sequencing-based spatial omics mapping on the same tissue section via DBiTplus
+Journal: Nature methods
+Link: https://doi.org/10.1038/s41592-025-02948-0
+Date: 2026-01-15
+Abstract: Spatially mapping the transcriptome and proteome in the same tissue section can profoundly advance our understanding of cellular heterogeneity and function. Here we present Deterministic Barcoding in Tissue sequencing plus (DBiTplus), an integrative multimodal spatial omics approach combining sequencing-based spatial transcriptomics and multiplexed protein imaging on the same section, enabling both single-cell-resolution cell typing and transcriptome-wide interrogation of biological pathways. DBiTplus utilizes spatial barcoding and RNase H-mediated cDNA retrieval, preserving tissue architecture for multiplexed protein imaging. We developed computational pipelines to integrate these modalities, allowing imaging-guided deconvolution to generate single-cell-resolved spatial transcriptome atlases. We demonstrate DBiTplus across diverse samples including frozen mouse embryos, and formalin-fixed paraffin-embedded human lymph nodes and lymphoma tissues, highlighting its compatibility with challenging clinical specimens. DBiTplus uncovered mechanisms of lymphomagenesis, progression and transformation in human lymphomas. Thus, DBiTplus is a unified workflow for spatially resolved single-cell atlasing and unbiased exploration of biological mechanisms in a cell-by-cell manner at transcriptome scale.
+---
+Title: Hypoxia-driven remodeling of SELENOP<sup>+</sup> macrophages shapes T cell dynamics and promotes ovarian cancer metastasis
+Journal: Nature communications
+Link: https://doi.org/10.1038/s41467-025-67859-2
+Date: 2026-01-12
+Abstract: High-grade serous ovarian cancer (HGSOC) is characterized by extensive transcoelomic dissemination and the accumulation of ascites. However, how site-specific tumor microenvironment (TME) drives progression remains unknown. Here we show the co-occurrence and spatial co-localization of SELENOP<sup>+</sup> macrophages and precursor exhausted CD8<sup>+</sup> T cells and demonstrate that SELENOP<sup>+</sup> macrophages activate T cells via selenoprotein P in vitro and in vivo. We further identify a dynamic transition in the SELENOP<sup>+</sup>/SPP1<sup>+</sup> macrophage populations as tumor metastasis, driven by increased hypoxia malignant epithelial cells through VEGFA-EPHB2 signaling. We also reveal that anti-VEGFA intervention controls ovarian tumor growth by increasing SELENOP<sup>+</sup> macrophages and cytotoxicity of CD8<sup>+</sup> T cells in vivo. Taken together, these findings spotlight the role of tumor-induced TME remodeling in subverting immune-mediated tumor control and thus facilitating HGSOC metastasis in females. Collectively, our results provide a foundation for the development of targeted therapeutic interventions aimed at impeding HGSOC metastatic trajectory.
+---
