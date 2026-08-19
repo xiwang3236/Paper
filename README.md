@@ -1,11 +1,34 @@
 # Spatial Omics Prediction Papers
 
-Last update: 2026-04-28.
+Last update: 2026-08-19.
 
 ## Journal & Preprint Papers
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
+| 2026-08-17 arXiv | [CytoFormer: A Molecularly Supervised Cell Foundation Model for Histopathology Cell Classification](https://arxiv.org/abs/2608.16718v1) | Cell type classification (23 types, 16 organs) | H&E + ST | Img(Xenium) | - |
+| 2026-08-17 arXiv | [Concept-based explanation of gene expression prediction from H&E images](https://arxiv.org/abs/2608.16669v1) | Gene expression + morphological concept attribution | H&E | Seq (HEST-1k) | - |
+| 2026-08-14 arXiv | [Program-space Diffusion for Morphology-to-Transcriptomics Prediction](https://arxiv.org/abs/2608.14330v1) | Gene expression (transcriptional programs, cNMF) | H&E | ST (General) | - |
+| 2026-08-11 arXiv | [Path2ST: Hierarchical Cell-Tissue Grounded Cross-Modal Translation for Spatial Transcriptomics](https://arxiv.org/abs/2608.14710v1) | Gene expression | H&E | ST (General) | [Repo](https://github.com/RuochenLiu23/Path2ST) |
+| 2026-08-08 Bioinformatics | [PSSD: Progressive Spatial-Semantic Decoupling for Flow-Based Gene Expression Prediction from Histology Images](https://doi.org/10.1093/bioinformatics/btag598) | Gene expression | H&E | Both | [Repo](https://github.com/ChyaZhang/PSSD) |
+| 2026-08-08 arXiv | [VOICE: A Vision-Omics Foundation Model Integrating Direct and Retrieval-Based Prediction of In-situ Single-Cell Gene Expression](https://arxiv.org/abs/2608.08366v1) | Gene expression (single-cell resolution) | H&E + ST | Img(Xenium) | - |
+| 2026-07-27 arXiv | [HistoGPA: A Context-Conditioned Gene-Prior Attention Framework for Histology-Based Spatial Gene Expression Prediction](https://arxiv.org/abs/2607.24364v1) | Gene expression | H&E | Both (HEST-1k) | - |
+| 2026-07-23 arXiv | [HierarchicalDAEW: Domain-Aware Edge-Weighted Graph Convolution with Evidential Uncertainty for Multi-Section Spatial Gene Expression Prediction from H&E Histology](https://arxiv.org/abs/2607.20896v1) | Gene expression + uncertainty calibration | H&E | Seq(Visium) | - |
+| 2026-07-20 arXiv | [GigaPath-Flash and GigaTIME-Flash: Efficient Pathology Foundation Models for Whole-Slide and Tumor Microenvironment Analysis](https://arxiv.org/abs/2607.18218v2) | Spatial proteomics / tumor immune microenvironment | H&E | None | - |
+| 2026-07-10 arXiv | [COAST: Context-Aware Differential Learning for Gene Expression Prediction in Spatial Transcriptomics](https://arxiv.org/abs/2607.09166v1) | Gene expression | H&E | ST (General) | - |
+| 2026-07-08 Bioinformatics | [DFCE-KanT: Predicting Spatial Gene Expression from Histology Images via Contrastive Learning](https://doi.org/10.1093/bioinformatics/btag502) | Gene expression | H&E | Seq | [Repo](https://github.com/LFfocus/DFCE-KanT) |
+| 2026-07-06 arXiv | [DriftST: One-Step Generative Inference of Spatial Transcriptomics from H&E Histology](https://arxiv.org/abs/2607.04740v1) | Gene expression (spot + cell level) | H&E | Both | - |
+| 2026-06-29 arXiv | [Data-Efficient Multimodal Alignment for Histopathology-based Molecular Prediction](https://arxiv.org/abs/2606.29949v1) | Pathway activity / molecular prompting | H&E + RNA-seq | None (multi-cancer) | - |
+| 2026-06-24 arXiv | [JASPR: Joint Spatial Representation learning of histology and spatial genomics for improved virtual genomic screening and clinical prognostication](https://arxiv.org/abs/2606.28395v1) | Gene expression (9,248 genes) + prognosis | H&E + ST | ST (General) | - |
+| 2026-06-19 arXiv | [Contrastive and Adaptive Multi-modal Masked Autoencoder for Spatial Transcriptomics](https://arxiv.org/abs/2606.21156v1) | Gene expression + spatial imputation | H&E + ST | ST (General) | [Repo](https://github.com/Kyyle2114/CAMMST) |
+| 2026-06-16 arXiv | [Predicting Immune Biomarkers with MultiModal Mixture-of-Expert Pathology Foundation Models Empowers Precision Oncology (MixTIME)](https://arxiv.org/abs/2606.18123v2) | Protein expression (17 mIF markers) | H&E + mIF | mIF co-registered | - |
+| 2026-06-12 arXiv | [HiST: A Hierarchical Sparse Transformer for Cross-Modal Spatial Transcriptomics Modeling](https://arxiv.org/abs/2606.14251v1) | Gene expression (whole-slide) | H&E | Multi-organ | - |
+| 2026-06-01 arXiv | [GC-MoE: Genomics-Guided Cell-Type-Specific Mixture of Experts for Histology-Based Single-Cell Spatial Transcriptomics](https://arxiv.org/abs/2606.02424v1) | Gene expression (single-cell resolution) | H&E | Img (single-cell ST) | - |
+| 2026-05-29 arXiv | [Spatial Transcriptomics-Guided Alignment Enhances Molecular Profiling in Pathology Foundation Model (STAMP)](https://arxiv.org/abs/2606.03644v1) | Molecular profiling (pathway-level) | H&E + ST | Both (HumanST-1k) | - |
+| 2026-05-29 Bioinformatics | [HisCMCL: Cross-Modal Contrastive Learning with Hierarchical Multi-Scale Fusion for Spatial Expression Prediction](https://doi.org/10.1093/bioinformatics/btag342) | Gene expression | H&E | ST (General) | [Repo](https://github.com/wenwenmin/HisCMCL) |
+| 2026-05-18 arXiv | [FLAG: Foundation model representation with Latent diffusion Alignment via Graph for spatial gene expression prediction](https://arxiv.org/abs/2605.18055v1) | Gene expression | H&E | ST (General) | [Repo](https://github.com/darkflash03/FLAG) |
+| 2026-05-15 Nature Computational Science | [HESpotEx: a dual-stream deep learning framework for spot-level gene expression prediction from histological images](https://doi.org/10.1038/s43588-026-00992-0) | Gene expression (5,457 genes) | H&E | Both | - |
+| 2026-05-13 arXiv | [DUET: Dual-Paradigm Adaptive Expert Triage with Single-cell Inductive Prior for Spatial Transcriptomics Prediction](https://arxiv.org/abs/2605.14104v1) | Gene expression | H&E + scRNA-seq | ST (General) | [Repo](https://github.com/Junchao-Zhu/DUET) |
 | 2026-04-26 Bioinformatics | [GR2ST: Spatial Transcriptomics Prediction based on Graph-Enhanced Multimodal Contrastive Learning](https://doi.org/10.1093/bioinformatics/btag209) | Gene expression prediction | H&E + ST | Seq(Visium) | [Repo](https://github.com/zjl1109294570/GR2ST) |
 | 2026-04-26 arXiv | [Leveraging Spatial Transcriptomics as Alternative to Manual Annotations for Deep Learning-Based Nuclei Analysis](https://arxiv.org/abs/2604.23481) | Cell type classification | H&E + ST | Both | - |
 | 2026-04-23 arXiv | [CHRep: Cross-modal Histology Representation and Post-hoc Calibration for Spatial Gene Expression Prediction](https://arxiv.org/abs/2604.21573) | Gene expression prediction | H&E | Seq(Visium) | - |
