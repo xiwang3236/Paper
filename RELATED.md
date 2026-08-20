@@ -6,6 +6,8 @@ Auto-generated from `README.md`. Last update: 2026-04-01.
 
 ## Journal & Preprint Papers
 
++ https://www.cell.com/cell/fulltext/S0092-8674(26)00824-X?rss=yes 
+
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
 | 2026-03-30 arXiv | [Key-Embedded Privacy for Decentralized AI in Biomedical Omics (INFL)](https://arxiv.org/abs/2603.28334v1) | Federated learning for omics (classification, clustering, regression) | ST (multi-omics) | - | - |
