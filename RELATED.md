@@ -2,7 +2,7 @@
 
 Papers related to spatial omics but not focused on prediction tasks. For prediction-focused papers, see [README.md](README.md).
 
-Auto-generated from `README.md`. Last update: 2026-04-01.
+Auto-generated from `README.md`. Last update: 2026-04-28.
 
 ## Journal & Preprint Papers
 
@@ -10,27 +10,14 @@ Auto-generated from `README.md`. Last update: 2026-04-01.
 
 | Published | Title | Assignment | Modalities | Platform | Code |
 | --- | --- | --- | --- | --- | --- |
-| 2026-03-30 arXiv | [Key-Embedded Privacy for Decentralized AI in Biomedical Omics (INFL)](https://arxiv.org/abs/2603.28334v1) | Federated learning for omics (classification, clustering, regression) | ST (multi-omics) | - | - |
-| 2026-03-27 Nature Communications | [SMART: spatial multi-omic aggregation using graph neural networks and metric learning](https://doi.org/10.1038/s41467-026-70821-5) | Spatial multi-omics integration and domain identification | ST (multi-omics) | Both | - |
-| 2026-03-23 Genome Research | [spRefine denoises and imputes spatial transcriptomic data with a reference-free framework powered by genomic language model](https://doi.org/10.1101/gr.281001.125) | ST denoising and gene imputation | ST | Both | - |
-| 2026-03-23 arXiv | [MIOFlow 2.0: A unified framework for inferring cellular stochastic dynamics from single cell and spatial transcriptomics data](https://arxiv.org/abs/2603.22564v1) | Cellular trajectory inference | ST + scRNA-seq | Both | - |
-| 2026-03-23 arXiv | [Subspace Tensor Orthogonal Rotation Model (STORM) for Batch Alignment, Cell Type Deconvolution, and Gene Imputation in Spatial Transcriptomic Data](https://arxiv.org/abs/2603.22477v1) | ST batch alignment, deconvolution, gene imputation | ST | Both | - |
-| 2026-03-22 arXiv | [Domain Elastic Transform: Bayesian Function Registration for High-Dimensional Scientific Data (DET)](https://arxiv.org/abs/2603.21235v1) | ST slice registration and alignment | ST | Both | [Repo](https://github.com/ohirose/bcpd) |
-| 2026-03-18 Nature Communications | [Celcomen: spatial causal disentanglement for single-cell and tissue perturbation modeling](https://doi.org/10.1038/s41467-026-69856-5) | Spatial perturbation modeling and counterfactual ST generation | ST | Both | - |
-| 2026-03-18 arXiv | [RAFT-UP: Robust Alignment for Spatial Transcriptomics with Explicit Control of Spatial Distortion](https://arxiv.org/abs/2603.18249v1) | ST slice alignment and integration | ST | Both | - |
-| 2026-03-16 Cell Reports Methods | [Convpaint: Interactive pixel classification using pretrained neural networks](https://doi.org/10.1016/j.crmeth.2026.101335) | Interactive pixel segmentation/classification | H&E | - | - |
-| 2026-03-13 arXiv | [Spatial Transcriptomics as Images for Large-Scale Pretraining](https://arxiv.org/abs/2603.13432v3) | ST pretraining paradigm (image-like crop representation) | ST | Both | - |
-| 2026-03-12 Nature Methods | [stVCR: spatiotemporal dynamics of single cells](https://doi.org/10.1038/s41592-026-03010-3) | Spatiotemporal cell dynamics reconstruction | ST | Both | - |
-| 2026-03-10 arXiv | [Distribution-free screening of spatially variable genes in spatial transcriptomics (MM-test)](https://arxiv.org/abs/2603.09061v1) | Spatially variable gene detection with FDR control | ST | Both | - |
-| 2026-03-09 arXiv | [Beyond Attention Heatmaps: How to Get Better Explanations for Multiple Instance Learning Models in Histopathology (xMIL)](https://arxiv.org/abs/2603.08328v1) | Explainability/heatmap evaluation for MIL histopathology models | H&E | - | [Repo](https://github.com/bifold-pathomics/xMIL/tree/xmil-journal) |
-| 2026-03-06 arXiv | [SpatialMAGIC: A Hybrid Framework Integrating Graph Diffusion and Spatial Attention for Spatial Transcriptomics Imputation](https://arxiv.org/abs/2603.06780v1) | ST data imputation and denoising | ST | Both | [Repo](https://github.com/sayeemzzaman/SpatialMAGIC) |
-| 2026-03-05 arXiv | [Count Bridges enable Modeling and Deconvolving Transcriptomic Data](https://arxiv.org/abs/2603.04730v1) | Cell-type deconvolution of bulk RNA-seq and ST spots | ST + scRNA-seq | Both | - |
-| 2026-03-02 Nature Methods | [DECODE: deep learning-based common deconvolution framework for various omics data](https://doi.org/10.1038/s41592-026-03007-y) | Cell type/state deconvolution from multi-omics tissue data | ST (multi-omics) | - | - |
-| 2026-03-02 bioRxiv | [Benchmarking DNA barcode decoding strategies under high error rates](https://doi.org/10.21203/rs.3.rs-8850174/v1) | Barcode decoding for high-density spatial transcriptomics arrays | ST (technology) | - | - |
-| 2026-02-04 arXiv | [ImmuVis: Hyperconvolutional Foundation Model for Imaging Mass Cytometry](https://arxiv.org/abs/2602.04585v1) | Virtual staining / Classification | IMC | IMC | - |
-| 2026-02-02 arXiv | [hSNMF: Hybrid Spatially Regularized NMF for Image-Derived Spatial Transcriptomics](https://arxiv.org/abs/2602.02638v1) | ST clustering | ST | iST (Xenium) | [Repo](https://github.com/ishtyaqmahmud/hSNMF) |
-| 2026-01-31 Bioinformatics | [A spectral dimension reduction technique that improves pattern detection in multivariate spatial data](https://doi.org/10.1093/bioinformatics/btag052) | Dimension reduction / Spatial pattern detection | ST | ST (General) | [Repo](https://github.com/IMSBCompBio/SpaCo) |
-| 2026-01-29 PLOS Computational Biology | [SpaConTDS: A multimodal contrastive learning framework for identifying spatial domains by applying tuple disturbing strategy](https://doi.org/10.1371/journal.pcbi.1013893) | Spatial domain identification | H&E + ST | ST (General) | - |
+| 2026-04-24 Nature Genetics | [SpaMosaic: Mosaic integration of spatial multi-omics](https://doi.org/10.1038/s41588-026-02573-3) | Multi-omics mosaic integration + spatial domain identification | ST (RNA + ATAC + protein + histone) | ST (General) | - |
+| 2026-04-26 arXiv | [VitaminP: cross-modal learning enables whole-cell segmentation from routine histology](https://arxiv.org/abs/2604.23799) | Whole-cell segmentation | H&E + mIF | General | - |
+| 2026-04-17 Bioinformatics | [DualCellChat: Reconstructing cell-cell interaction network in single-cell spatial transcriptomics via directed heterogeneous graph autoencoder](https://doi.org/10.1093/bioinformatics/btag130) | Cell-cell interaction inference | ST | iST (General) | [Repo](https://github.com/JinxianHu/DualCellChat) |
+| 2026-04-15 Nature Communications | [COZI: Comparison and optimization of cellular neighbor preference methods for quantitative tissue analysis](https://doi.org/10.1038/s41467-026-71699-z) | Spatial neighbor preference analysis | ST | ST (General) | - |
+| 2026-04-10 Nature Communications | [RESCUE: recovery of unattributed expression patterns in spatial transcriptomics](https://doi.org/10.1038/s41467-026-71720-5) | Unattributed expression recovery | ST | iST (General) | - |
+| 2026-04-03 Nature Computational Science | [Benchmarking alignment methods for spatial transcriptomics data](https://doi.org/10.1038/s43588-026-00977-z) | ST slice alignment benchmark | ST | ST (General) | - |
+| 2026-04-03 Bioinformatics | [DEGAS Spatial Smoothing: Identification of High-Risk Cells in Single-Cell Spatially Resolved Transcriptomics Data](https://doi.org/10.1093/bioinformatics/btag098) | High-risk cell identification | ST | iST (General) | [Repo](https://github.com/tsteelejohnson91/DEGAS) |
+| 2026-04-01 Bioinformatics | [SA2E: spatial-aware auto-encoder for cell type deconvolution of spatial transcriptomics data](https://doi.org/10.1093/bioinformatics/btag133) | Cell type deconvolution | ST + scRNA-seq | Seq(Visium) | [Repo](https://github.com/xkmaxidian/SA2E) |
 | 2026-01-27 Bioinformatics | [STransfer: A Transfer Learning-Enhanced Graph Convolutional Network for Clustering Spatial Transcriptomics Data](https://doi.org/10.1093/bioinformatics/btag049) | ST clustering | ST | ST (General) | [Repo](https://github.com/Saki-JSU/Publications/tree/main/STransfer) |
 | 2026-01-06 Briefings in Bioinformatics | [PathCLAST: pathway-augmented contrastive learning with attention for interpretable spatial transcriptomics](https://doi.org/10.1093/bib/bbag029) | Spatial domain identification | H&E + ST | ST (General) | - |
 | 2026-01-22 bioRxiv | [SUMC reveals conserved and context-specific tumor microenvironment architectures across heterogeneous spatial datasets](https://doi.org/10.21203/rs.3.rs-8197716/v1) | Cross-sample ST integration / Meta-clustering | ST | ST (General) | - |
